@@ -1,0 +1,43 @@
+Sword
+The blade you found upon falling into this realm. It seems to occasionally glow a soft purple.
+3
+-
+*34
+
+
+Sword
+The blade you found upon falling into this realm. Something you've done to it seems to have made it stronger. It glows purple sometimes.
+4
+-
+*35
+
+
+Sword
+The blade you found upon falling into this realm. You seem to have awakened some mysterious power inside of it, increasing its effectiveness. It shines bright purple often.
+5
+-
+*36
+
+Leather Armour
+A worn set of leather straps. They might offer some extra protection. 
+4
+-
+^37
+
+Chainmail
+An abandoned set of chainmail armour. Looks like it'd provide moderate protection. 
+9
+-
+^38
+
+Plate Armour
+A prestigious suit of armour, looking as if it belonged to a revered knight. It's still in remarkable condition too! At least for being down here anyway. Would likely give great protection.
+15
+-
+^39
+
+Emerald Key
+A shiny golden key with a brightly glowing emerald end.
+2,0,0
+-
+%40
