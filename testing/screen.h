@@ -3,6 +3,7 @@
 #include "ASCII-Display-Manager/ASCII/TextEffects.h"
 #include <conio.h>
 #include <format>
+#include "entity.h"
 
 ASCIIobject bounds;
 ASCIIobject panel1;
@@ -88,7 +89,7 @@ void refreshTitle(string title)
 }
 void refreshDesc()
 {
-	int length = 78 - 10;
+	int length = 78 - 9;
 	int height = 35 - 8;
 	CsrMoveTo(9, 8);
 	for (int i = 0; i < height; i++)
@@ -142,53 +143,40 @@ void refreshInfo()
 		CsrMove('l', length);
 	}
 }
-void printInfo()
+void printInfo(player& player)
 {
 
 	refreshInfo();
-
-	//temp
-	string name = "Kraken";
-	string _class = "Rouge";
-	int maxhealth = 27;
-	int health = 23;
-	int power = 7;
-	int defense = 8;
-	int speed = 9;
-	int stealth = 11;
-	int potions = 69;
-	int kills = 420;
-	//
 
 	//name and class
 	CsrMoveTo(87, 5);
 	cout << getColour("blue", 1, 0);
 	//cout << getEffect('r');
-	cout << name << " the " << _class;
+	cout << player.m_Name << " the " << player.m_Class;
 
 	//health
 	CsrMoveTo(87, 7);
-	if (health >= 10) { cout << "HP:" << health << "/" << maxhealth; }
-	else { cout << "HP:" << "0" << health << "/" << maxhealth; }
+	if (player.m_MaxHP >= 10) { cout << "HP:" << player.m_HP << "/" << player.m_MaxHP; }
+	else { cout << "HP:" << "0" << player.m_HealPot << "/" << player.m_MaxHP; }
 	cout << " ";
 	//health bar
-	for (int i = 0; i < health; i++)
+	for (int i = 0; i < player.m_HP; i++)
 	{
 		cout << getColour("green", 1, 1) << " " << getEffect('r');
 	}
-	for (int i = 0; i < maxhealth - health; i++)
+	for (int i = 0; i < player.m_MaxHP - player.m_HP; i++)
 	{
 		cout << getColour("red", 1, 1) << " " << getEffect('r') << getColour("blue", 1, 0);
 	}
 	//stats
 	CsrMoveTo(87, 10);
-	cout << "POWER: " << power;
+	cout << "POWER: " << player.m_Power;
 	CsrMoveTo(87, 11);
-	cout << "DEFENSE: " << defense;
+	cout << "DEFENSE: " << player.m_Defense;
 	CsrMoveTo(87, 12);
-	cout << "SPEED: " << speed;
+	cout << "SPEED: " << player.m_Speed;
 	CsrMoveTo(87, 13);
-	cout << "STEALTH: " << stealth;
+	cout << "STEALTH: " << player.m_Stealth;
 
 	//Position
 	CsrMoveTo(108, 10);
@@ -200,9 +188,9 @@ void printInfo()
 
 	//other
 	CsrMoveTo(87, 15);
-	cout << "POTIONS: " << potions;
+	cout << "POTIONS: " << player.m_HealPot;
 	CsrMoveTo(108, 15);
-	cout << "RATS KILLED: " << kills;
+	cout << "RATS KILLED: " << 420; //temp change later plz
 
 	//go back
 	usrInput();
@@ -268,6 +256,5 @@ void printMap()
 void refreshScreen()
 {
 	bounds.place(0, 0);
-	printInfo();
 	usrInput();
 }
