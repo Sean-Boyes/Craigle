@@ -9,15 +9,17 @@
 class room
 {
 public:
-	int m_xcord, m_ycord, m_zcord, m_roomevent;
+	int m_xcord, m_ycord, m_zcord;
     bool m_Cleared;
-    std::string m_Title, m_ConstDescr, m_ClearedDescr, m_UnclearedDescr;
+    std::string m_Title, m_ConstDescr, m_PreitemDescr, m_PostitemDescr, m_PreeventDescr, m_PosteventDescr;
     std::vector<int> m_MonsterID, m_ItemID, m_RandEnc;
+    std::vector<std::string> m_roomevent;
     std::vector<bool> m_properties;
+
 
     room() {};
 
-    room(std::string Title, std::string ConstDescr, std::string UnclearedDescr, std::string ClearedDescr, std::string MonsterID, std::string ItemID, std::string RandEnc, std::string properties, std::string roomevent, std::string cords) : m_Title(Title), m_ConstDescr(ConstDescr), m_ClearedDescr(ClearedDescr), m_UnclearedDescr(UnclearedDescr), m_Cleared(false)
+    room(std::string Title, std::string ConstDescr, std::string PreitemDescr, std::string PostitemDescr, std::string PreeventDescr, std::string PosteventDescr, std::string MonsterID, std::string ItemID, std::string RandEnc, std::string properties, std::string roomevent, std::string cords) : m_Title(Title), m_ConstDescr(ConstDescr), m_PreeventDescr(PreeventDescr), m_PosteventDescr(PosteventDescr), m_PreitemDescr(PreitemDescr), m_PostitemDescr(PostitemDescr), m_Cleared(false)
     {
         //propety order:: lockednorth, lockedsouth, lockedeast, lockedwest, lockeddown, lockedup, dark, flooded, freezing
         size_t x = cords.find(',');
@@ -84,7 +86,7 @@ public:
         
         for (char& c : properties)
         {
-            if (c == 0)
+            if (c == '0')
             {
                 m_properties.push_back(false);
             }
@@ -94,9 +96,21 @@ public:
             }
         }
 
-        if (roomevent != "-")
+        for (char& c : roomevent)
         {
-            m_roomevent = stoi(roomevent);
+            if (c == '$')
+            {
+                m_roomevent.push_back(temp);
+                temp.clear();
+            }
+            else if (c == '-')
+            {
+                continue;
+            }
+            else
+            {
+                temp.push_back(c);
+            }
         }
 
     };

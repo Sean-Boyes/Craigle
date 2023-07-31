@@ -15,7 +15,7 @@ inline int roll(int x, int y)
 
 inline int Attack(std::string hit, int frame)
 {
-    std::cout << "\x1b[1;37m" << "\r" << "Attack!           \n";
+    std::cout << "\x1b[1;37m" << "\r";
     if (_kbhit())
     {
         _getch();
@@ -161,7 +161,7 @@ inline int heal(player& hero)
     }
     else
     {
-        hero.m_HP == hero.m_HP + 7;
+        hero.m_HP = hero.m_HP + 7;
         if (hero.m_HP > hero.m_MaxHP)
         {
             hero.m_HP = hero.m_MaxHP;

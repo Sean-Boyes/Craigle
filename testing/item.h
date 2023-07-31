@@ -60,29 +60,11 @@ class quest : public item
 public:
 	std::string activeinteraction = "use";
 
-	int m_xcordloca, m_ycordloca, m_zcordloca;
-	bool CheckLoca(int xloca, int yloca, int zloca) 
-	{
-		if (xloca == m_xcordloca && (yloca == m_ycordloca && zloca == m_zcordloca))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	quest(std::string name, std::string description, std::string cords, std::string combinabales, std::string id)
+	quest(std::string name, std::string description, std::string combinabales, std::string id)
 	{
 		m_name = name;
 		m_description = description;
 		m_itemid = stoi(id);
 		m_combinabales = combinabales;
-		size_t x = cords.find(',');
-		size_t z = cords.rfind(',');
-		m_xcordloca = stoi(cords.substr(0, x));
-		m_zcordloca = stoi(cords.substr(z + 1, cords.size() - z));
-		m_ycordloca = stoi(cords.substr(x + 1, z - x));
 	}
 };

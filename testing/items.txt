@@ -1,3 +1,8 @@
+Lantern
+A rusty old lantern. Useful for seeing in the dark.
+-
+%33
+
 Sword
 The blade you found upon falling into this realm. It seems to occasionally glow a soft purple.
 3
@@ -38,6 +43,5 @@ A prestigious suit of armour, looking as if it belonged to a revered knight. It'
 
 Emerald Key
 A shiny golden key with a brightly glowing emerald end.
-2,0,0
 -
 %40

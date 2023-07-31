@@ -6,7 +6,7 @@
 inline int BattleStart(player& hero, monster enemy)
 {
 	std::string input;
-	std::cout << "\nA " << enemy.m_Name << " appears!\n";
+	std::cout << "A " << enemy.m_Name << " appears!\n";
 	bool herogo = false;
 	if (hero.m_Speed > enemy.m_Speed)
 	{
@@ -16,7 +16,7 @@ inline int BattleStart(player& hero, monster enemy)
 	{
 		if (herogo == true)
 		{
-			std::cout << "What will you do?\n";
+			std::cout << "What will you do now?\n";
 
 			std::cin >> input;
 			transform(input.begin(), input.end(), input.begin(), ::tolower);
@@ -83,11 +83,13 @@ inline int BattleStart(player& hero, monster enemy)
 		}
 		if (hero.m_HP <= 0)
 		{
+			std::cout << "You died!\n";
 			return 1;
 			break;
 		}
 		else if (enemy.m_HP <= 0)
 		{
+			std::cout << "Enemy Slaughtered!\n";
 			return 2;
 			break;
 		}

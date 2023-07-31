@@ -1,23 +1,40 @@
-$Binary Order: LN, LS, LE, LW, LD, LU, IN, IS, IE, IW, ID, IU, DA, FL, FR
+#Binary Order: LN, LS, LE, LW, LD, LU, DA, FL, FR
 
 Great Cavern
 This is the cavern in which you fell into from above. The surrounding rocks have a sprinkling of vines and few small streams of water dripping down.
 In a pedestal near where you fell sits a glowing sword.
 Near where you fell you see the empty pedestal.
-1,1,
-35,
-50|2,10|3
-000000000000000
+You see thick vines blocking a path to the east.
+To the east you see the path revealed after cutting the vines.
 -
+34,
+-
+001000000000000
+34>35>36>$2$You cut through the vines, revealing a path east.$
 *0,0,0
 
 Rubber Room
 This room is almost completely white, not a spec of dust or dirt tarnishing it. The walls are maybe of rubber, and you swear you can always hear the squeak of a rodent nearby.
+In the middle of the room you see a handheld lantern.
 -
 -
-1,1,
 -
-50|2,10|3,
+2,2,
+33,
+50|2,
 000000000000000
 -
 *1,0,0
+
+Dark Forest
+A rather dark forest. Seems to be a dead end.
+-
+-
+-
+-
+-
+-
+-
+000000000000100
+33>$12$You shine your new lantern, revealing a dark forest.$
+*2,0,0
