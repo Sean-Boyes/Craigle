@@ -1,9 +1,12 @@
 #pragma once
-#include "ASCII-Display-Manager/ASCII/Cursor.h"
-#include "ASCII-Display-Manager/ASCII/TextEffects.h"
+
 #include <conio.h>
 #include <format>
+
+#include "ASCII-Display-Manager/ASCII/Cursor.h"
+#include "ASCII-Display-Manager/ASCII/TextEffects.h"
 #include "entity.h"
+#include "map.h"
 
 ASCIIobject bounds;
 ASCIIobject panel1;
@@ -12,15 +15,22 @@ ASCIIobject panel3;
 ASCIIobject seperator;
 ASCIIobject input;
 
+string preTitle = "";
+string preDesc = "";
+
 vector<int> inputPos = { 10 , 38 };
 vector<int> titlePos = { 9 , 6 };
 vector<int> descPos = { 9 , 8 };
+vector<int> descPos2 = { 9 , 25 };
+vector<int> descPos3 = { 9 , 35 };
 
-vector<vector<int>> knownRooms = { {0,0},{0,1},{-1,0 },{-2,0},{-2,1},{-2,-1},{0,-1},{0,-2},{1,-2},{2,-2},{2,-1},{2,0},{-3,0},{-3,1} };
+vector<vector<int>> knownRooms = { {0,0} };
 vector<int> currentPos = { 0,0 };
+vector<int> aroundPos = { 0,0 };
 
 int lineLength = 69;
-
+void refreshDesc2();
+void refreshDesc3();
 void printDesc(string tempdesc, int textSpeed);
 
 void refreshInput()
@@ -81,6 +91,11 @@ void initializeScreen()
 }
 void refreshTitle(string title)
 {
+	if (preTitle == title)
+	{
+		return;
+	}
+	preTitle = title;
 	CsrMoveTo(titlePos[0], titlePos[1]);
 	cout << "                                                                     ";
 	CsrMoveTo(titlePos[0], titlePos[1]);
@@ -90,7 +105,7 @@ void refreshTitle(string title)
 void refreshDesc()
 {
 	int length = 78 - 9;
-	int height = 35 - 8;
+	int height = 35 - 18;
 	CsrMoveTo(9, 8);
 	for (int i = 0; i < height; i++)
 	{
@@ -104,9 +119,14 @@ void refreshDesc()
 }
 void printDesc(string tempdesc, int textSpeed) // rfind last space of 69 long string, get that index, cout that, go down 1, delete front till index, repeat. send into ascii object
 {
-	//string tempdesc = "They put me in a rubber room. They put me in a rubber room with rats! They put me in a rubber room with rubber rats!!! The rats drove me crazy. Crazy?...I was crazy once.They put me in a rubber room. They put me in a rubber room with rats! They put me in a rubber room with rubber rats!!! The rats drove me crazy. Crazy?...I was crazy once.They put me in a rubber room. They put me in a rubber room with rats! They put me in a rubber room with rubber rats!!! The rats drove me crazy. Crazy?...I was crazy once.They put me in a rubber room. They put me in a rubber room with rats! They put me in a rubber room with rubber rats!!! The rats drove me crazy. Crazy?...I was crazy once.They put me in a rubber room. They put me in a rubber room with rats! They put me in a rubber room with rubber rats!!! The rats drove me crazy. Crazy?...I was crazy once.They put me in a rubber room. They put me in a rubber room with rats! They put me in a rubber room with rubber rats!!! The rats drove me crazy. Crazy?...I was crazy once.They put me in a rubber room. They put me in a rubber room with rats! They put me in a rubber room with rubber rats!!! The rats drove me crazy. Crazy?...I was crazy once.They put me in a rubber room. They put me in a rubber room with rats! They put me in a rubber room with rubber rats!!! The rats drove me crazy. Crazy?...I was crazy once.They put me in a rubber room. They put me in a rubber room with rats! They put me in a rubber room with rubber rats!!! The rats drove me crazy. Crazy?...I was crazy once.They put me in a rubber room. They put me in a rubber room with rats! They put me in a rubber room with rubber rats!!! The rats drove me crazy. Crazy?...I was crazy once.They put me in a rubber room. They put me in a rubber room with rats! They put me in a rubber room with rubber rats!!! The rats drove me crazy. Crazy?...I was crazy once.";
-	//string tempdesc2 = "Imagine Gordon Ramsay's swollen testicles draped over the rats head. The wrinkled skin of his scrot covering the rats eyes as the rat gasps for air. The weight of Ramsay's testicles barely being held by the rats tiny arms. The rat knows this is how he's going to die but its passion for cooking over powers it and with a great desperate squeeze of Ramsay's left nut, Ramsay's blasts someone in the face regarding an inquiry of the location of where the lamb sauce is located.";
+	if (preDesc == tempdesc)
+	{
+		return;
+	}
+	preDesc = tempdesc;
 	refreshDesc();
+	refreshDesc2();
+	refreshDesc3();
 	CsrMoveTo(descPos[0], descPos[1]);
 	//cout << getEffect('r');
 	int index;
@@ -125,6 +145,116 @@ void printDesc(string tempdesc, int textSpeed) // rfind last space of 69 long st
 	for (int i = 0; i < tempdesc.length(); i++)
 	{
 		cout << tempdesc[i];
+		std::this_thread::sleep_for(.01ms * textSpeed);
+	}
+	usrInput();
+}
+void printDesc(string tempdesc, int textSpeed,bool force) // rfind last space of 69 long string, get that index, cout that, go down 1, delete front till index, repeat. send into ascii object
+{
+	preDesc = tempdesc;
+	refreshDesc();
+	refreshDesc2();
+	refreshDesc3();
+	CsrMoveTo(descPos[0], descPos[1]);
+	//cout << getEffect('r');
+	int index;
+	while (tempdesc.length() > 69)
+	{
+		index = tempdesc.rfind(' ', 69);
+		for (int i = 0; i < index; i++)
+		{
+			cout << tempdesc[i];
+			std::this_thread::sleep_for(.01ms * textSpeed);
+		}
+		tempdesc.erase(0, index + 1);
+		cout << endl;
+		CsrMove('r', 8);
+	}
+	for (int i = 0; i < tempdesc.length(); i++)
+	{
+		cout << tempdesc[i];
+		std::this_thread::sleep_for(.01ms * textSpeed);
+	}
+	usrInput();
+}
+void refreshDesc2()
+{
+	int length = 78 - 9;
+	int height = 35 - 26;
+	CsrMoveTo(9, 25);
+	for (int i = 0; i < height; i++)
+	{
+		for (int ii = 0; ii < length; ii++)
+		{
+			cout << getEffect('r') << " ";
+		}
+		CsrMove('d', 1);
+		CsrMove('l', length);
+	}
+}
+void printDesc2(string tempdesc, int textSpeed)
+{
+	refreshDesc2();
+	refreshDesc3();
+	CsrMoveTo(descPos2[0], descPos2[1]);
+	//cout << getEffect('r');
+	int index;
+	while (tempdesc.length() > 69)
+	{
+		index = tempdesc.rfind(' ', 69);
+		for (int i = 0; i < index; i++)
+		{
+			cout << tempdesc[i];
+			std::this_thread::sleep_for(.01ms * textSpeed);
+		}
+		tempdesc.erase(0, index + 1);
+		cout << endl;
+		CsrMove('r', 8);
+	}
+	for (int i = 0; i < tempdesc.length(); i++)
+	{
+		cout << tempdesc[i];
+		std::this_thread::sleep_for(.01ms * textSpeed);
+	}
+	usrInput();
+}
+void refreshDesc3()
+{
+	int length = 78 - 9;
+	int height = 1;
+	CsrMoveTo(9, 35);
+	for (int i = 0; i < height; i++)
+	{
+		for (int ii = 0; ii < length; ii++)
+		{
+			cout << getEffect('r') << " ";
+		}
+		CsrMove('d', 1);
+		CsrMove('l', length);
+	}
+}
+void printDesc3(string tempdesc, int textSpeed)
+{
+	refreshDesc3();
+	CsrMoveTo(descPos3[0], descPos3[1]);
+	//cout << getEffect('r');
+	int index;
+	while (tempdesc.length() > 69)
+	{
+		index = tempdesc.rfind(' ', 69);
+		for (int i = 0; i < index; i++)
+		{
+			cout << tempdesc[i];
+			std::this_thread::sleep_for(.01ms * textSpeed);
+		}
+		tempdesc.erase(0, index + 1);
+		cout << endl;
+		CsrMove('r', 8);
+	}
+	for (int i = 0; i < tempdesc.length(); i++)
+	{
+		cout << tempdesc[i];
+		std::this_thread::sleep_for(.01ms * textSpeed);
 	}
 	usrInput();
 }
@@ -257,4 +387,31 @@ void refreshScreen()
 {
 	bounds.place(0, 0);
 	usrInput();
+}
+void lookAround(vector<room> rooms, int xcord, int ycord)
+{
+	//loop throught rooms in 4 directions removing corners
+	currentPos = { xcord, ycord };
+	for (int i = -1; i <= 1; i++)
+	{
+		for (int ii = -1; ii <= 1; ii++)
+		{
+			aroundPos = { (currentPos[0] + ii),(currentPos[1] + i) };
+			int roomid = room::CordLookup(rooms, aroundPos[0], aroundPos[1], 0);
+			if (ii == i || -ii == i)
+			{
+				continue;
+			}
+			if (std::find(knownRooms.begin(), knownRooms.end(), aroundPos) != knownRooms.end()) // problematic
+			{
+				//cout << "element exists ";//element exists
+			}
+			else if (roomid != -1)
+			{
+				knownRooms.push_back(aroundPos);
+			}
+		}
+	}
+
+	printMap();
 }
