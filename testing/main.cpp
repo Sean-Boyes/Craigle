@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "battle.cpp"
 #include "screen.h" // gui
 
@@ -98,7 +97,11 @@ int main()
 	}
 
 
-	printDesc("\x1b[1;37mWelcome Adventurer! Would you like to be a Fighter, Paladin, or Rogue? ", 1);
+	std::this_thread::sleep_for(.5s);
+ 	std::thread t1(printDesc,"\x1b[1;37mWelcome Adventurer! Would you like to be a Fighter, Paladin, or Rogue? ", 3);
+	_getch();
+	interupt = true;
+	
 	std::string input;
 	player hero;
 	while (true)
@@ -107,34 +110,48 @@ int main()
 		transform(input.begin(), input.end(), input.begin(), ::tolower);
 		if (input == "paladin")
 		{
-			printDesc("\x1b[1;37mWhat should we call you? ",1);
+			std::thread t1(printDesc,"\x1b[1;37mWhat should we call you? ",1);
+			_getch();
+			interupt = true;
+			std::this_thread::sleep_for(.5ms);
+			interupt = false;
 			std::getline(std::cin, input);
 			hero.SetStats(25, 0, 15, 25, 10, 10, 0, 1, 25, input, "Paladin", 0, false);
 			printInfo(hero);
+			t1.join();
 			break;
-
 		}
 		else if (input == "rogue")
 		{
-			printDesc("\x1b[1;37mWhat should we call you? ",1);
+			std::thread t1(printDesc,"\x1b[1;37mWhat should we call you? ",1);
+			_getch();
+			interupt = true;
+			std::this_thread::sleep_for(.5ms);
+			interupt = false;
 			std::getline(std::cin, input);
 			hero.SetStats(15, 0, 15, 10, 25, 25, 0, 1, 15, input, "Rouge", 0, false);
 			printInfo(hero);
+			t1.join();
 			break;
 
 		}
 		else if (input == "fighter")
 		{
-			printDesc("\x1b[1;37mWhat should we call you? ",1);
+			std::thread t1(printDesc,"\x1b[1;37mWhat should we call you? ",1);
+			_getch();
+			interupt = true;
+			std::this_thread::sleep_for(.5ms);
+			interupt = false;
 			std::getline(std::cin, input);
 			hero.SetStats(20, 0, 20, 20, 20, 15, 50, 1, 20, input, "Fighter", 0, false);
 			printInfo(hero);
+			t1.join();
 			break;
 
 		}
 		else
 		{
-			cout << "\a";
+			std::cout << "\a";
 			refreshInput();
 			usrInput();
 			//std::cout << "Invalid Entry\n"; // add new section
@@ -195,7 +212,13 @@ int main()
 					tmpDesc += rooms[loadedroomid].m_PreeventDescr;
 				}
 			}
-			printDesc(tmpDesc, 1);
+			std::thread t1(printDesc,tmpDesc, 1);
+			_getch();
+			interupt = true;
+			std::this_thread::sleep_for(.1s);
+			interupt = false;
+			t1.join();
+
 		}
 
 		bool battlecheck = false;
@@ -403,7 +426,7 @@ int main()
 					tmpDesc += rooms[loadedroomid].m_PreeventDescr;
 				}
 			}
-			printDesc(tmpDesc, 1,true);
+			printDescForce(tmpDesc, 1);
 		}
 		else if (input.substr(0, 5) == "equip")
 		{	
