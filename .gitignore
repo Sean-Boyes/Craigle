@@ -52,3 +52,6 @@ testing/x64/Debug/testing.vcxproj.FileListAbsolute.txt
 *.idb
 *.pdb
 *.vsidx
+*.testlog
+*.manifest
+*.filters
