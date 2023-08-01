@@ -2,9 +2,13 @@
 
 
 #include "battle.cpp"
+#include "screen.h" // gui
 
 int main()
 {
+	initializeScreen(); // start the gui drawing
+	string tmpDesc = "";
+
 	int xcord = 0;
 	int ycord = 0;
 	int zcord = 0;
@@ -54,7 +58,7 @@ int main()
 	}
 	else
 	{
-		std::cout << "Error, no item data found!";
+		printDesc2("Error, no item data found!", 1);
 		return 734;
 
 	}
@@ -89,12 +93,12 @@ int main()
 	}
 	else
 	{
-		std::cout << "Error, no room data found!";
+		printDesc2("Error, no room data found!", 1);
 		return 980;
 	}
 
 
-	std::cout << "\x1b[1;37m" << "Welcome Adventurer! Would you like to be a Fighter, Paladin, or Rogue?\n";
+	printDesc("\x1b[1;37mWelcome Adventurer! Would you like to be a Fighter, Paladin, or Rogue? ", 1);
 	std::string input;
 	player hero;
 	while (true)
@@ -103,31 +107,37 @@ int main()
 		transform(input.begin(), input.end(), input.begin(), ::tolower);
 		if (input == "paladin")
 		{
-			std::cout << "What should we call you?\n";
+			printDesc("\x1b[1;37mWhat should we call you? ",1);
 			std::getline(std::cin, input);
 			hero.SetStats(25, 0, 15, 25, 10, 10, 0, 1, 25, input, "Paladin", 0, false);
+			printInfo(hero);
 			break;
 
 		}
 		else if (input == "rogue")
 		{
-			std::cout << "What should we call you?\n";
+			printDesc("\x1b[1;37mWhat should we call you? ",1);
 			std::getline(std::cin, input);
 			hero.SetStats(15, 0, 15, 10, 25, 25, 0, 1, 15, input, "Rouge", 0, false);
+			printInfo(hero);
 			break;
 
 		}
 		else if (input == "fighter")
 		{
-			std::cout << "What should we call you?\n";
+			printDesc("\x1b[1;37mWhat should we call you? ",1);
 			std::getline(std::cin, input);
 			hero.SetStats(20, 0, 20, 20, 20, 15, 50, 1, 20, input, "Fighter", 0, false);
+			printInfo(hero);
 			break;
 
 		}
 		else
 		{
-			std::cout << "Invalid Entry\n";
+			cout << "\a";
+			refreshInput();
+			usrInput();
+			//std::cout << "Invalid Entry\n"; // add new section
 		}
 	}
 
@@ -136,19 +146,56 @@ int main()
 	int prevloadedroomid;
 	do{
 		int loadedroomid = room::CordLookup(rooms, xcord, ycord, zcord);
+		printMap();
 		if (loadedroomid == -1)
 		{
-			std::cout << "You can't go that way\n";
+			printDesc2("You can't go that way ",1);
 			xcord = prevx; ycord = prevy; zcord = prevz;
 			loadedroomid = prevloadedroomid;
 		}
+
+		printInfo(hero);
+		lookAround(rooms, xcord, ycord);
+
 		if (rooms[loadedroomid].m_properties[12] == true)
 		{
-			std::cout << "? ? ?" << std::endl;
+			printInfo(hero);
+			lookAround(rooms, xcord, ycord);
+			refreshDesc();
+			refreshTitle("? ? ?");
 		}
 		else
 		{
-			std::cout << rooms[loadedroomid].m_Title << std::endl;
+		printInfo(hero);
+		lookAround(rooms,xcord, ycord);
+		refreshTitle(rooms[loadedroomid].m_Title);
+		tmpDesc = "";
+
+			if (rooms[loadedroomid].m_properties[12] == true)
+			{
+				tmpDesc += "It's too dark to see anything ";
+			}
+			else
+			{
+				tmpDesc += rooms[loadedroomid].m_ConstDescr;
+				if (rooms[loadedroomid].m_ItemID.size() == 0)
+				{
+					tmpDesc += rooms[loadedroomid].m_PostitemDescr;
+				}
+				else
+				{
+					tmpDesc += rooms[loadedroomid].m_PreitemDescr;
+				}
+				if (rooms[loadedroomid].m_roomevent.size() == 0)
+				{
+					tmpDesc += rooms[loadedroomid].m_PosteventDescr;
+				}
+				else
+				{
+					tmpDesc += rooms[loadedroomid].m_PreeventDescr;
+				}
+			}
+			printDesc(tmpDesc, 1);
 		}
 
 		bool battlecheck = false;
@@ -165,7 +212,9 @@ int main()
 			{
 				xcord = prevx; ycord = prevy; zcord = prevz;
 				loadedroomid = prevloadedroomid;
-				std::cout << rooms[loadedroomid].m_Title << std::endl;
+				printInfo(hero);
+				lookAround(rooms, xcord, ycord);
+				refreshTitle(rooms[loadedroomid].m_Title);
 				break;
 			}
 		}
@@ -183,18 +232,19 @@ int main()
 		prevx = xcord; prevy = ycord; prevz = zcord;
 		prevloadedroomid = loadedroomid;
 
-		std::cout << "What will you do now?\n";
+		printDesc3("What will you do now? ",1);
+		string tmpDesc = "";
 		std::getline(std::cin, input);
 		transform(input.begin(), input.end(), input.begin(), ::tolower);
 		if (input == "")
 		{
-			std::cout << "What's that?\n";
+			printDesc2("What's that? ",1);
 		}
 		else if (input == "go north" || (input == "north" || input == "n"))
 		{
 			if (rooms[loadedroomid].m_properties[0] == true)
 			{
-				std::cout << "You can't go that way\n";
+				printDesc2("You can't go that way ",1);
 			}
 			else
 			{
@@ -205,7 +255,7 @@ int main()
 		{
 			if (rooms[loadedroomid].m_properties[1] == true)
 			{
-				std::cout << "You can't go that way\n";
+				printDesc2("You can't go that way ",1);
 			}
 			else
 			{
@@ -216,7 +266,7 @@ int main()
 		{
 			if (rooms[loadedroomid].m_properties[2] == true)
 			{
-				std::cout << "You can't go that way\n";
+				printDesc2("You can't go that way ",1);
 			}
 			else
 			{
@@ -227,7 +277,7 @@ int main()
 		{
 			if (rooms[loadedroomid].m_properties[3] == true)
 			{
-				std::cout << "You can't go that way\n";
+				printDesc2("You can't go that way ",1);
 			}
 			else
 			{
@@ -250,7 +300,7 @@ int main()
 		{
 			if (rooms[loadedroomid].m_ItemID.size() == 0)
 			{
-				std::cout << "No such item here. This room looks empty." << std::endl;
+				printDesc2("No such item here. This room looks empty.",1);
 			}
 			else
 			{
@@ -274,17 +324,17 @@ int main()
 							}
 
 							inventory.push_back(items[itemid]);
-							std::cout << "Got " << items[itemid].m_name << std::endl;
+							printDesc2("Got " + items[itemid].m_name, 1);
 							rooms[loadedroomid].m_ItemID.erase(rooms[loadedroomid].m_ItemID.begin() + i);
 						}
 						else
 						{
-							std::cout << "No such item here" << std::endl;
+							printDesc2("No such item here", 1);
 						}
 					}
 					else
 					{
-						std::cout << "No such item here" << std::endl;
+						printDesc2("No such item here", 1);
 					}
 					++i;
 				}
@@ -319,45 +369,47 @@ int main()
 			}
 			if (itemcheck == true)
 			{
-				std::cout << itemdesc << std::endl;
+				printDesc2(itemdesc, 1);
 			}
 			else
 			{
-				std::cout << "You have no such thing\n";
+				printDesc2("You have no such thing ",1);
 			}
 		}
 		else if (input == "look")
 		{
+			tmpDesc = "";
 			if (rooms[loadedroomid].m_properties[12] == true)
 			{
-				std::cout << "It's too dark to see anything\n";
+				tmpDesc += "It's too dark to see anything ";
 			}
 			else
 			{
-				std::cout << rooms[loadedroomid].m_ConstDescr << " ";
+				tmpDesc += rooms[loadedroomid].m_ConstDescr;
 				if (rooms[loadedroomid].m_ItemID.size() == 0)
 				{
-					std::cout << rooms[loadedroomid].m_PostitemDescr << " ";
+					tmpDesc += rooms[loadedroomid].m_PostitemDescr;
 				}
 				else
 				{
-					std::cout << rooms[loadedroomid].m_PreitemDescr << " ";
+					tmpDesc += rooms[loadedroomid].m_PreitemDescr;
 				}
 				if (rooms[loadedroomid].m_roomevent.size() == 0)
 				{
-					std::cout << rooms[loadedroomid].m_PosteventDescr << "\n";
+					tmpDesc += rooms[loadedroomid].m_PosteventDescr;
 				}
 				else
 				{
-					std::cout << rooms[loadedroomid].m_PreeventDescr << "\n";
+					tmpDesc += rooms[loadedroomid].m_PreeventDescr;
 				}
 			}
+			printDesc(tmpDesc, 1,true);
 		}
 		else if (input.substr(0, 5) == "equip")
 		{	
 			if(hero.m_ArmourEquip == true)
 			{
-				std::cout << "Already have armour equiped\n";
+				printDesc2("Already have armour equiped ", 1);
 			}
 			else
 			{
@@ -384,16 +436,16 @@ int main()
 					{
 						hero.m_ArmourEquip = true;
 						hero.m_Defense = hero.m_Defense + def;
-						std::cout << "Equiped!\n";
+						printDesc2("Equiped! ",1);
 					}
 					else
 					{
-						std::cout << "Cannot equip this\n";
+						printDesc2("Cannot equip this ", 1);
 					}
 				}
 				else
 				{
-					std::cout << "You have no such thing\n";
+					printDesc2("You have no such thing ",1);
 				}
 			}
 
@@ -402,7 +454,7 @@ int main()
 		{
 		if (hero.m_ArmourEquip == false)
 		{
-			std::cout << "Nothing to unequip\n";
+			printDesc2("Nothing to unequip", 1);
 		}
 		else
 		{
@@ -429,40 +481,40 @@ int main()
 				{
 					hero.m_ArmourEquip = false;
 					hero.m_Defense = hero.m_Defense - def;
-					std::cout << "Unequiped!\n";
+					printDesc2("Unequiped!", 1);
 				}
 				else
 				{
-					std::cout << "You are not wearing this\n";
+					printDesc2("You are not wearing this ", 1);
 				}
 			}
 			else
 			{
-				std::cout << "You have no such thing\n";
+				printDesc2("You have no such thing ", 1);
 			}
 		}
 
 		}
-		else if (input == "inventory")
+		else if (input == "inventory" || input == "i")
 		{
 			for (item i : inventory)
 			{
-				std::cout << i.m_name << std::endl;
+				printDesc2(i.m_name, 1);
 			}
 		}
 		else if (input == "search")
 		{
 			if (rooms[loadedroomid].m_properties[12] == true)
 			{
-				std::cout << "It's too dark to see anything\n";
+				printDesc2("It's too dark to see anything",1);
 			}
 			else if (rooms[loadedroomid].m_Search == "-")
 			{
-				std::cout << "There is nothing more to be seen here\n";
+				printDesc2("There is nothing more to be seen here",1);
 			}
 			else
 			{
-				std::cout << rooms[loadedroomid].m_Search << std::endl;
+				printDesc2(rooms[loadedroomid].m_Search, 1);
 			}
 		}
 		else if (input.substr(0, 7) == "combine")
@@ -473,7 +525,7 @@ int main()
 			size_t acheck = input.find("and");
 			if (acheck == std::string::npos)
 			{
-				std::cout << "Cannot understand entry\n";
+				printDesc2("Cannot understand entry ", 1);
 			}
 			else
 			{
@@ -550,7 +602,7 @@ int main()
 								hero.m_CritMulti = inventory[inventory.size() - 1].m_assign2;
 
 							}
-							std::cout << "Made " << inventory[inventory.size() - 1].m_name << std::endl;
+							printDesc2("Made " + inventory[inventory.size() - 1].m_name, 1);
 							printcheck = true;
 							break;
 						}
@@ -558,12 +610,12 @@ int main()
 					}
 					if (printcheck == false)
 					{
-						std::cout << "Cannot combines these in any meaningful way\n";
+						printDesc2("Cannot combines these in any meaningful way ",1);
 					}
 				}
 				else
 				{
-					std::cout << "You have no such thing\n";
+					printDesc2("You have no such thing ", 1);
 				}
 			} 
 			
@@ -616,7 +668,7 @@ int main()
 						{
 							printcheck = true;
 							rooms[loadedroomid].m_properties[stoi(rooms[loadedroomid].m_roomevent[i + 1])] = !rooms[loadedroomid].m_properties[stoi(rooms[loadedroomid].m_roomevent[i + 1])];
-							std::cout << rooms[loadedroomid].m_roomevent[i + 2] << std::endl;
+							printDesc2(rooms[loadedroomid].m_roomevent[i + 2], 1);
 							rooms[loadedroomid].m_roomevent.erase(rooms[loadedroomid].m_roomevent.begin() + i + 2);
 							rooms[loadedroomid].m_roomevent.erase(rooms[loadedroomid].m_roomevent.begin() + i + 1);
 							rooms[loadedroomid].m_roomevent.erase(rooms[loadedroomid].m_roomevent.begin() + i);
@@ -627,18 +679,18 @@ int main()
 				}
 				if (printcheck == false)
 				{
-					std::cout << "Cannot use here\n";
+					printDesc2("Cannot use here ", 1);
 				}
 			}
 			else
 			{
-				std::cout << "You have no such thing\n";
+				printDesc2("You have no such thing ", 1);
 			}
 
 		}
 		else
 		{
-			std::cout << "Cannot understand entry\n";
+			printDesc2("Cannot understand entry ", 1);
 		}
 
 	} while (true);
