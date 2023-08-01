@@ -497,10 +497,16 @@ int main()
 		}
 		else if (input == "inventory" || input == "i")
 		{
+			string tmpinv = "You have: ";
 			for (item i : inventory)
 			{
-				printDesc2(i.m_name, 1);
+				tmpinv += i.m_name += ", ";
 			}
+			if (tmpinv != "")
+			{
+				tmpinv += "and nothing else.";
+			}
+			printDesc2(tmpinv,1);
 		}
 		else if (input == "search")
 		{
