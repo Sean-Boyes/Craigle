@@ -18,6 +18,8 @@ ASCIIobject input;
 string preTitle = "";
 string preDesc = "";
 
+bool interupt = false;
+
 vector<int> inputPos = { 10 , 38 };
 vector<int> titlePos = { 9 , 6 };
 vector<int> descPos = { 9 , 8 };
@@ -32,6 +34,7 @@ int lineLength = 69;
 void refreshDesc2();
 void refreshDesc3();
 void printDesc(string tempdesc, int textSpeed);
+void printDescForce(string tempdesc, int textSpeed);
 
 void refreshInput()
 {
@@ -42,7 +45,7 @@ void refreshInput()
 	{
 		for (int ii = 0; ii < length; ii++)
 		{
-			cout << getEffect('r') << " ";
+			std::cout << getEffect('r') << " ";
 		}
 		CsrMove('d', 1);
 		CsrMove('l', length);
@@ -132,11 +135,24 @@ void printDesc(string tempdesc, int textSpeed) // rfind last space of 69 long st
 	int index;
 	while (tempdesc.length() > 69)
 	{
+		if (interupt)
+		{
+			printDescForce(tempdesc, textSpeed);
+			interupt = false;
+			return;
+		}
 		index = tempdesc.rfind(' ', 69);
 		for (int i = 0; i < index; i++)
 		{
+			if (interupt)
+			{
+				printDescForce(tempdesc, textSpeed);
+				interupt = false;
+				return;
+			}
 			cout << tempdesc[i];
 			std::this_thread::sleep_for(.01ms * textSpeed);
+
 		}
 		tempdesc.erase(0, index + 1);
 		cout << endl;
@@ -149,7 +165,7 @@ void printDesc(string tempdesc, int textSpeed) // rfind last space of 69 long st
 	}
 	usrInput();
 }
-void printDesc(string tempdesc, int textSpeed,bool force) // rfind last space of 69 long string, get that index, cout that, go down 1, delete front till index, repeat. send into ascii object
+void printDescForce(string tempdesc, int textSpeed) // rfind last space of 69 long string, get that index, cout that, go down 1, delete front till index, repeat. send into ascii object
 {
 	preDesc = tempdesc;
 	refreshDesc();
@@ -164,7 +180,6 @@ void printDesc(string tempdesc, int textSpeed,bool force) // rfind last space of
 		for (int i = 0; i < index; i++)
 		{
 			cout << tempdesc[i];
-			std::this_thread::sleep_for(.01ms * textSpeed);
 		}
 		tempdesc.erase(0, index + 1);
 		cout << endl;
@@ -173,7 +188,6 @@ void printDesc(string tempdesc, int textSpeed,bool force) // rfind last space of
 	for (int i = 0; i < tempdesc.length(); i++)
 	{
 		cout << tempdesc[i];
-		std::this_thread::sleep_for(.01ms * textSpeed);
 	}
 	usrInput();
 }
@@ -414,4 +428,9 @@ void lookAround(vector<room> rooms, int xcord, int ycord)
 	}
 
 	printMap();
+}
+void interuptThread()
+{
+	_getch();
+	interupt = true;
 }
