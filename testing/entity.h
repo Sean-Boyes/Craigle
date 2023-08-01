@@ -157,12 +157,13 @@ public:
 class player : public entity
 {
 public:
-	int m_Power, m_Stealth, m_CritMulti, m_HealPot, m_MaxHP; 
+	int m_Power, m_Stealth, m_CritMulti, m_HealPot, m_MaxHP, m_Kills; 
 	std::string m_Class;
+	bool m_ArmourEquip;
 	// all stats out of 20. Power acts as weapon multiplier (x/10), Defense subtracts from incoming hits (x/8),
 	// Speed determines dodge window and initiative, and Stealth determines ease of escape and likelyhood of random encounters.
 
-	virtual void SetStats(int HP, int DMG, int Power, int Defense, int Speed, int Stealth, int CritMulti, int HealPot, int MaxHP, std::string Name, std::string Class)
+	virtual void SetStats(int HP, int DMG, int Power, int Defense, int Speed, int Stealth, int CritMulti, int HealPot, int MaxHP, std::string Name, std::string Class, int kills, bool ArmourEquip)
 	{
 		m_HP = HP;
 		m_ATK = DMG * (Power / 10);
@@ -175,6 +176,8 @@ public:
 		m_Name = Name;
 		m_MaxHP = MaxHP;
 		m_Class = Class;
+		m_Kills = kills;
+		m_ArmourEquip = ArmourEquip;
 	};
 };
 

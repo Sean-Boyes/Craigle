@@ -11,7 +11,7 @@ class room
 public:
 	int m_xcord, m_ycord, m_zcord;
     bool m_Cleared;
-    std::string m_Title, m_ConstDescr, m_PreitemDescr, m_PostitemDescr, m_PreeventDescr, m_PosteventDescr;
+    std::string m_Title, m_ConstDescr, m_PreitemDescr, m_PostitemDescr, m_PreeventDescr, m_PosteventDescr, m_Search;
     std::vector<int> m_MonsterID, m_ItemID, m_RandEnc;
     std::vector<std::string> m_roomevent;
     std::vector<bool> m_properties;
@@ -19,7 +19,7 @@ public:
 
     room() {};
 
-    room(std::string Title, std::string ConstDescr, std::string PreitemDescr, std::string PostitemDescr, std::string PreeventDescr, std::string PosteventDescr, std::string MonsterID, std::string ItemID, std::string RandEnc, std::string properties, std::string roomevent, std::string cords) : m_Title(Title), m_ConstDescr(ConstDescr), m_PreeventDescr(PreeventDescr), m_PosteventDescr(PosteventDescr), m_PreitemDescr(PreitemDescr), m_PostitemDescr(PostitemDescr), m_Cleared(false)
+    room(std::string Title, std::string ConstDescr, std::string PreitemDescr, std::string PostitemDescr, std::string PreeventDescr, std::string PosteventDescr, std::string Search, std::string MonsterID, std::string ItemID, std::string RandEnc, std::string properties, std::string roomevent, std::string cords) : m_Title(Title), m_ConstDescr(ConstDescr), m_PreeventDescr(PreeventDescr), m_PosteventDescr(PosteventDescr), m_PreitemDescr(PreitemDescr), m_PostitemDescr(PostitemDescr), m_Search(Search), m_Cleared(false)
     {
         //propety order:: lockednorth, lockedsouth, lockedeast, lockedwest, lockeddown, lockedup, dark, flooded, freezing
         size_t x = cords.find(',');

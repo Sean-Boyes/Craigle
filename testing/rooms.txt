@@ -1,4 +1,5 @@
 #Binary Order: LN, LS, LE, LW, LD, LU, DA, FL, FR
+#Room Order: Title, ConstDescr, Preitem, Postitem, Preevent, Postevent, Search, MonsterIDs, ItemIDs, RandEnc, BinaryProp, Event, Cords
 
 Great Cavern
 This is the cavern in which you fell into from above. The surrounding rocks have a sprinkling of vines and few small streams of water dripping down.
@@ -6,6 +7,7 @@ In a pedestal near where you fell sits a glowing sword.
 Near where you fell you see the empty pedestal.
 You see thick vines blocking a path to the east.
 To the east you see the path revealed after cutting the vines.
+-
 -
 34,
 -
@@ -15,11 +17,12 @@ To the east you see the path revealed after cutting the vines.
 
 Rubber Room
 This room is almost completely white, not a spec of dust or dirt tarnishing it. The walls are maybe of rubber, and you swear you can always hear the squeak of a rodent nearby.
-In the middle of the room you see a handheld lantern.
+In the middle of the room you see a handheld Empty Lantern.
 -
 -
 -
-2,2,
+-
+-
 33,
 50|2,
 000000000000000
@@ -32,9 +35,24 @@ A rather dark forest. Seems to be a dead end.
 -
 -
 -
+After searching the nearby trees, you find a hidden path to the north.
 -
 -
 -
 000000000000100
-33>$12$You shine your new lantern, revealing a dark forest.$
+32>$12$You shine your new lantern, revealing a dark forest.$
 *2,0,0
+
+Cavern Cave
+A damp and dreary little corner.
+On a rock you see a half-full flask of Fuel.
+-
+-
+-
+-
+-
+31,39,
+-
+000000000000000
+-
+*-1,0,0

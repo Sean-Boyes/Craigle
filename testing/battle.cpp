@@ -30,7 +30,7 @@ inline int BattleStart(player& hero, monster enemy)
 					}
 					else if (swipe == 3)
 					{
-						enemy.m_HP = (enemy.m_HP - hero.m_ATK - round(hero.m_ATK * (hero.m_CritMulti / 100.00)));
+						enemy.m_HP = (enemy.m_HP - round(hero.m_ATK * (hero.m_CritMulti / 100.00)));
 					}
 					else
 					{

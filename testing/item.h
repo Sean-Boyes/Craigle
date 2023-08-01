@@ -4,10 +4,45 @@
 class item
 {
 public:
-	int m_itemid;
-	std::string m_name, m_description, m_combinabales;
+	int m_itemid, m_assign1, m_assign2, m_type;
+	std::string m_name, m_description;
+	std::vector<int> m_combinables, m_combinies;
 
-	virtual void itemset() {};
+	item(std::string name, std::string description, std::string assign1, std::string assign2, std::string combinabales, std::string id, int type) : m_type(type), m_name(name), m_description(description) 
+	{
+		m_itemid = stoi(id);
+		if (assign1 != "-")
+		{
+			m_assign1 = stoi(assign1);
+		}
+		if (assign2 != "-")
+		{
+			m_assign2 = stoi(assign2);
+		}
+		std::string temp;
+		for (char& c : combinabales)
+		{
+			if (c == ',')
+			{
+				m_combinables.push_back(stoi(temp));
+				temp.clear();
+			}
+			else if (c == '$')
+			{
+				m_combinies.push_back(stoi(temp));
+				temp.clear();
+			}
+			else if (c == '-')
+			{
+				continue;
+			}
+			else
+			{
+				temp.push_back(c);
+			}
+
+		}
+	};
 
 	static int GetItem(std::vector<item> items, int id) 
 	{
@@ -20,51 +55,5 @@ public:
 		}
 		return -1;
 	};
-};
 
-class swordupgrade : public item
-{
-public:
-	std::vector<std::string> activeinteractions{ "use", "swing", "slash" };
-
-	std::string m_atk;
-	swordupgrade(std::string name, std::string description, std::string atk, std::string combinabales, std::string id)
-	{
-		m_name = name;
-		m_description = description;
-		m_combinabales = combinabales;
-		m_itemid = stoi(id);
-		m_atk = stoi(atk);
-	};
-};
-
-class armourupgrade : public item
-{
-public:
-	std::vector<std::string> activeinteractions{"wear", "equip", "put on", "use"};
-	std::vector<std::string> inactiveinteractions{"unequip", "take off", "remove"};
-
-	std::string m_def;
-	armourupgrade(std::string name, std::string description, std::string def, std::string combinabales, std::string id)
-	{
-		m_name = name;
-		m_description = description;
-		m_combinabales = combinabales;
-		m_itemid = stoi(id);
-		m_def = stoi(def);
-	}
-};
-
-class quest : public item
-{
-public:
-	std::string activeinteraction = "use";
-
-	quest(std::string name, std::string description, std::string combinabales, std::string id)
-	{
-		m_name = name;
-		m_description = description;
-		m_itemid = stoi(id);
-		m_combinabales = combinabales;
-	}
 };
