@@ -1,12 +1,25 @@
 #pragma once
 
+#include <string>
+#include <unordered_map>
+#include <format>
+#include <conio.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <chrono>
+#include <fstream>
+#include <random>
+#include <thread>
+#include <cmath>
+#include <algorithm>
 
+#include "entity.h"
 #include "Attack-Dodge.h"
 
 inline int BattleStart(player& hero, monster enemy)
 {
 	std::string input;
-	std::cout << "A " << enemy.m_Name << " appears!\n";
 	bool herogo = false;
 	if (hero.m_Speed > enemy.m_Speed)
 	{
@@ -20,55 +33,55 @@ inline int BattleStart(player& hero, monster enemy)
 
 			std::cin >> input;
 			transform(input.begin(), input.end(), input.begin(), ::tolower);
-				if (input == "attack")
-				{
-					int swipe = Attack(enemy.m_Hitbar, enemy.m_Frame);
+			if (input == "attack")
+			{
+				int swipe = Attack(enemy.m_Hitbar, enemy.m_Frame);
 
-					if (swipe == 2)
-					{
-						enemy.m_HP = enemy.m_HP - hero.m_ATK;
-					}
-					else if (swipe == 3)
-					{
-						enemy.m_HP = (enemy.m_HP - round(hero.m_ATK * (hero.m_CritMulti / 100.00)));
-					}
-					else
-					{
-						std::cout << "You missed!\n";
-					}
-					herogo = false;
-				}
-				else if (input == "heal")
+				if (swipe == 2)
 				{
-					bool healcheck = heal(hero);
-					if (healcheck == true)
-					{
-						herogo = false;
-					}
+					enemy.m_HP = enemy.m_HP - hero.m_ATK;
 				}
-				else if (input == "hp" || input == "check hp")
+				else if (swipe == 3)
 				{
-					std::cout << hero.m_HP << std::endl;
-				}
-				else if (input == "run")
-				{
-					int esc = roll(0, 100);
-					if (esc < enemy.m_EscPercent)
-					{
-						std::cout << "Escaped!\n";
-						return 3;
-					}
-					else
-					{
-						std::cout << "Miss!\n";
-					}
-					herogo = false;
-
+					enemy.m_HP = (enemy.m_HP - round(hero.m_ATK * (hero.m_CritMulti / 100.00)));
 				}
 				else
 				{
-					std::cout << "Invalid Entry\n";
+					std::cout << "You missed!\n";
 				}
+				herogo = false;
+			}
+			else if (input == "heal")
+			{
+				bool healcheck = heal(hero);
+				if (healcheck == true)
+				{
+					herogo = false;
+				}
+			}
+			else if (input == "hp" || input == "check hp")
+			{
+				std::cout << hero.m_HP << std::endl;
+			}
+			else if (input == "run")
+			{
+				int esc = roll(0, 100);
+				if (esc < enemy.m_EscPercent)
+				{
+					std::cout << "Escaped!\n";
+					return 3;
+				}
+				else
+				{
+					std::cout << "Miss!\n";
+				}
+				herogo = false;
+
+			}
+			else
+			{
+				std::cout << "Invalid Entry\n";
+			}
 
 
 		}
@@ -77,7 +90,7 @@ inline int BattleStart(player& hero, monster enemy)
 			bool jump = Dodge(enemy.m_Window);
 			if (jump == false)
 			{
-				hero.m_HP = hero.m_HP - enemy.m_ATK + round(hero.m_Defense/8);
+				hero.m_HP = hero.m_HP - enemy.m_ATK + round(hero.m_Defense / 8);
 			}
 			herogo = true;
 		}
@@ -94,6 +107,6 @@ inline int BattleStart(player& hero, monster enemy)
 			break;
 		}
 	} while (true);
-}
+};
 
 

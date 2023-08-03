@@ -1,8 +1,49 @@
+#pragma once
 
-#include "battle.cpp"
+#include <string>
+#include <unordered_map>
+#include <format>
+#include <conio.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <chrono>
+#include <fstream>
+#include <random>
+#include <thread>
+#include <cmath>
+#include <algorithm>
+
+#include "tut.h"
+#include "battle.h"
+#include "entity.h"
+#include "map.h"
+#include "item.h"
 
 int main()
 {
+	std::string input;
+	std::cout << "Would you like to play the tutorial? Yes/No\n";
+	while (true)
+	{
+		std::getline(std::cin, input);
+		transform(input.begin(), input.end(), input.begin(), ::tolower);
+		if (input == "yes" || input == "y")
+		{
+			tutorial();
+		}
+		else if (input == "no" || input == "n")
+		{
+			break;
+		}
+		else
+		{
+			std::cout << "Invalid Entry\n";
+		}
+	}
+
+
+	tutorial();
 	int xcord = 0;
 	int ycord = 0;
 	int zcord = 0;
@@ -93,7 +134,6 @@ int main()
 
 
 	std::cout << "\x1b[1;37m" << "Welcome Adventurer! Would you like to be a Fighter, Paladin, or Rogue?\n";
-	std::string input;
 	player hero;
 	while (true)
 	{
@@ -131,6 +171,7 @@ int main()
 
 
 	bool death = false;
+	bool runchck = false;
 	int prevloadedroomid;
 	do{
 		int loadedroomid = room::CordLookup(rooms, xcord, ycord, zcord);
@@ -150,21 +191,62 @@ int main()
 		}
 
 		bool battlecheck = false;
-		for (int& monster : rooms[loadedroomid].m_MonsterID)
+		
+
+
+		if (runchck != true)
 		{
-			battlecheck = true;
-			int battle = BattleStart(hero, monster::GetMonster(monster, hero));
-			if (battle == 1)
+			int counter = 0;
+			while (counter < rooms[loadedroomid].m_RandEnc.size())
 			{
-				death = true;
-				break;
+				int percent = rooms[loadedroomid].m_RandEnc[counter];
+				int mid = rooms[loadedroomid].m_RandEnc[counter + 1];
+				int chance2 = roll(1, 100);
+				if (percent < chance2)
+				{
+					battlecheck = true;
+					runchck = true;
+					int battle = BattleStart(hero, monster::GetMonster(mid, hero));
+					if (battle == 1)
+					{
+						death = true;
+						break;
+					}
+					if (battle == 3)
+					{
+						xcord = prevx; ycord = prevy; zcord = prevz;
+						loadedroomid = prevloadedroomid;
+						std::cout << rooms[loadedroomid].m_Title << std::endl;
+						break;
+					}
+					else
+					{
+						++hero.m_Kills;
+					}
+				}
+				counter = counter + 2;
 			}
-			if (battle == 3)
+			for (int& monster : rooms[loadedroomid].m_MonsterID)
 			{
-				xcord = prevx; ycord = prevy; zcord = prevz;
-				loadedroomid = prevloadedroomid;
-				std::cout << rooms[loadedroomid].m_Title << std::endl;
-				break;
+				battlecheck = true;
+				runchck = true;
+				int battle = BattleStart(hero, monster::GetMonster(monster, hero));
+				if (battle == 1)
+				{
+					death = true;
+					break;
+				}
+				if (battle == 3)
+				{
+					xcord = prevx; ycord = prevy; zcord = prevz;
+					loadedroomid = prevloadedroomid;
+					std::cout << rooms[loadedroomid].m_Title << std::endl;
+					break;
+				}
+				else
+				{
+					++hero.m_Kills;
+				}
 			}
 		}
 		if (death == true)
@@ -176,6 +258,7 @@ int main()
 		{
 			std::getline(std::cin, input);
 		}
+		runchck = false;
 
 		rooms[loadedroomid].m_MonsterID.clear();
 		prevx = xcord; prevy = ycord; prevz = zcord;

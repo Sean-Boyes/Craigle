@@ -1,10 +1,20 @@
 
 #pragma once
 
-#include <vector>
 #include <string>
+#include <unordered_map>
+#include <format>
+#include <conio.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <chrono>
+#include <fstream>
+#include <random>
+#include <thread>
+#include <cmath>
+#include <algorithm>
 
-#include "item.h"
 
 class room
 {

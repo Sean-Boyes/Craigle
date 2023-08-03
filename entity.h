@@ -1,17 +1,18 @@
 #pragma once
 
-#include <vector>
+#include <string>
+#include <unordered_map>
+#include <format>
 #include <conio.h>
-#include <chrono>
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <chrono>
+#include <fstream>
 #include <random>
-#include <string>
 #include <thread>
 #include <cmath>
 #include <algorithm>
-
-#include "map.h"
 
 class entity
 {

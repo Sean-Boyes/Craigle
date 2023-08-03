@@ -22,7 +22,7 @@ In the middle of the room you see a handheld Empty Lantern.
 -
 -
 -
-2,
+-
 33,
 50|2,
 000000000
