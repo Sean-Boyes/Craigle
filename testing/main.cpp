@@ -330,6 +330,7 @@ int main()
 				size_t tempt = input.find_first_of(" ");
 				std::string temp = input.substr(tempt + 1, input.size() - tempt);
 				int i = 0;
+				bool grabcheck = false;
 				while (i < rooms[loadedroomid].m_ItemID.size())
 				{
 					int itemid = item::GetItem(items, rooms[loadedroomid].m_ItemID[i]);
@@ -348,18 +349,15 @@ int main()
 
 							inventory.push_back(items[itemid]);
 							printDesc2("Got " + items[itemid].m_name, 1);
+							grabcheck = true;
 							rooms[loadedroomid].m_ItemID.erase(rooms[loadedroomid].m_ItemID.begin() + i);
 						}
-						else
-						{
-							printDesc2("No such item here", 1);
-						}
-					}
-					else
-					{
-						printDesc2("No such item here", 1);
 					}
 					++i;
+				}
+				if (grabcheck == false)
+				{
+					std::cout << "No such item here" << std::endl;
 				}
 			}
 
@@ -534,6 +532,7 @@ int main()
 		else if (input == "search")
 		{
 			if (rooms[loadedroomid].m_properties[12] == true)
+			if (rooms[loadedroomid].m_properties[6] == true)
 			{
 				printDesc2("It's too dark to see anything",1);
 			}
@@ -696,8 +695,32 @@ int main()
 						if (iii == itemname)
 						{
 							printcheck = true;
-							rooms[loadedroomid].m_properties[stoi(rooms[loadedroomid].m_roomevent[i + 1])] = !rooms[loadedroomid].m_properties[stoi(rooms[loadedroomid].m_roomevent[i + 1])];
-							printDesc2(rooms[loadedroomid].m_roomevent[i + 2], 1);
+							std::string propcheck = rooms[loadedroomid].m_roomevent[i + 1];
+
+							int iiii = 0;
+							std::vector<int> tempv2;
+							std::string temps3;
+							while (iiii < rooms[loadedroomid].m_roomevent[i + 1].length())
+							{
+								if (rooms[loadedroomid].m_roomevent[i + 1][iiii] == '>')
+								{
+									tempv2.push_back(stoi(temps3));
+									temps3.clear();
+									++iiii;
+								}
+								else
+								{
+									temps3.push_back(rooms[loadedroomid].m_roomevent[i + 1][iiii]);
+									++iiii;
+								}
+							}
+
+							for (int entry : tempv2)
+							{
+								rooms[loadedroomid].m_properties[entry] = !rooms[loadedroomid].m_properties[entry];
+							}
+
+							std::cout << rooms[loadedroomid].m_roomevent[i + 2] << std::endl;
 							rooms[loadedroomid].m_roomevent.erase(rooms[loadedroomid].m_roomevent.begin() + i + 2);
 							rooms[loadedroomid].m_roomevent.erase(rooms[loadedroomid].m_roomevent.begin() + i + 1);
 							rooms[loadedroomid].m_roomevent.erase(rooms[loadedroomid].m_roomevent.begin() + i);
