@@ -11,8 +11,8 @@ To the east you see the path revealed after cutting the vines.
 -
 34,
 -
-001000000000000
-34>35>36>$2$You cut through the vines, revealing a path east.$
+001000000
+34>35>36>$2>$You cut through the vines, revealing a path east.$
 *0,0,0
 
 Rubber Room
@@ -22,10 +22,10 @@ In the middle of the room you see a handheld Empty Lantern.
 -
 -
 -
--
+2,
 33,
 50|2,
-000000000000000
+000000000
 -
 *1,0,0
 
@@ -39,8 +39,8 @@ After searching the nearby trees, you find a hidden path to the north.
 -
 -
 -
-000000000000100
-32>$12$You shine your new lantern, revealing a dark forest.$
+000000100
+32>$12>$You shine your new lantern, revealing a dark forest.$
 *2,0,0
 
 Cavern Cave
@@ -53,6 +53,34 @@ On a rock you see a half-full flask of Fuel.
 -
 31,39,
 -
-000000000000000
+000000000
 -
 *-1,0,0
+
+The Chamber
+A dark and cold chamber deviod of any life. It has an etheral odor of decay. To the West there dimly shines a purple mirror. The sword seems to want to go towards the mirror, and pulsates faster the closer you are to the mirror. 
+On a rock you see a half-full flask of Fuel.
+-
+-
+-
+-
+-
+-
+-
+000100100
+32>$3>6>$You shine your new lantern, revealing the chamber.$
+*-2,0,0
+
+The Misty Mirror
+An etheral realm?
+-
+-
+-
+-
+-
+10,
+-
+-
+000000000
+-
+*-3,0,0
