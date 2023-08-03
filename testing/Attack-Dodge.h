@@ -1,5 +1,7 @@
 #pragma once
 
+//#include "screen.h"
+
 #include "entity.h"
 
 
@@ -15,14 +17,13 @@ inline int roll(int x, int y)
 
 inline int Attack(std::string hit, int frame)
 {
-    std::cout << "\x1b[1;37m" << "\r";
+    //printDesc2("\x1b[1;37m",1);
     if (_kbhit())
     {
         _getch();
     }
     bool forwardcheck = 1;
     int hitstate = 0;
-    std::cout << hit;
     auto start = std::chrono::steady_clock::now();
     while (true)
     {
