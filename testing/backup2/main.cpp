@@ -442,19 +442,19 @@ int main()
 				tmpDesc += rooms[loadedroomid].m_ConstDescr;
 				if (rooms[loadedroomid].m_ItemID.size() == 0)
 				{
-					tmpDesc += rooms[loadedroomid].m_PostitemDescr + " ";
+					tmpDesc += rooms[loadedroomid].m_PostitemDescr;
 				}
 				else
 				{
-					tmpDesc += rooms[loadedroomid].m_PreitemDescr + " ";
+					tmpDesc += rooms[loadedroomid].m_PreitemDescr;
 				}
 				if (rooms[loadedroomid].m_roomevent.size() == 0)
 				{
-					tmpDesc += rooms[loadedroomid].m_PosteventDescr + " ";
+					tmpDesc += rooms[loadedroomid].m_PosteventDescr;
 				}
 				else
 				{
-					tmpDesc += rooms[loadedroomid].m_PreeventDescr + " ";
+					tmpDesc += rooms[loadedroomid].m_PreeventDescr;
 				}
 			}
 			printDescForce(tmpDesc, 1);
