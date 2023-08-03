@@ -22,6 +22,34 @@ public:
 	virtual void SetStats() {};
 
 };
+
+class player : public entity
+{
+public:
+	int m_Power, m_Stealth, m_CritMulti, m_HealPot, m_MaxHP, m_Kills;
+	std::string m_Class;
+	bool m_ArmourEquip;
+	// all stats out of 20. Power acts as weapon multiplier (x/10), Defense subtracts from incoming hits (x/8),
+	// Speed determines dodge window and initiative, and Stealth determines ease of escape and likelyhood of random encounters.
+
+	virtual void SetStats(int HP, int DMG, int Power, int Defense, int Speed, int Stealth, int CritMulti, int HealPot, int MaxHP, std::string Name, std::string Class, int kills, bool ArmourEquip)
+	{
+		m_HP = HP;
+		m_ATK = DMG * (Power / 10);
+		m_Power = Power;
+		m_Defense = Defense;
+		m_Speed = Speed;
+		m_Stealth = Stealth;
+		m_CritMulti = CritMulti;
+		m_HealPot = HealPot;
+		m_Name = Name;
+		m_MaxHP = MaxHP;
+		m_Class = Class;
+		m_Kills = kills;
+		m_ArmourEquip = ArmourEquip;
+	};
+};
+
 class monster : public entity
 {
 public:
@@ -42,7 +70,7 @@ public:
 		m_Name = Name;
 	};
 
-	static monster GetMonster(int id)
+	static monster GetMonster(int id, player hero)
 	{
 		if (id == 1)
 		{
@@ -88,6 +116,10 @@ public:
 		{
 			return GetSnake();
 
+		}
+		else if (id == 10)
+		{
+			return GetShade(hero);
 		}
 	}
 
@@ -153,31 +185,12 @@ public:
 		Snake.SetStats(10, 6, 12, 21, 50, "...o0o0o0o...", "Snake");
 		return Snake;
 	}
-};
-class player : public entity
-{
-public:
-	int m_Power, m_Stealth, m_CritMulti, m_HealPot, m_MaxHP, m_Kills; 
-	std::string m_Class;
-	bool m_ArmourEquip;
-	// all stats out of 20. Power acts as weapon multiplier (x/10), Defense subtracts from incoming hits (x/8),
-	// Speed determines dodge window and initiative, and Stealth determines ease of escape and likelyhood of random encounters.
 
-	virtual void SetStats(int HP, int DMG, int Power, int Defense, int Speed, int Stealth, int CritMulti, int HealPot, int MaxHP, std::string Name, std::string Class, int kills, bool ArmourEquip)
+	static monster GetShade(player hero)
 	{
-		m_HP = HP;
-		m_ATK = DMG * (Power / 10);
-		m_Power = Power;
-		m_Defense = Defense;
-		m_Speed = Speed;
-		m_Stealth = Stealth;
-		m_CritMulti = CritMulti;
-		m_HealPot = HealPot;
-		m_Name = Name;
-		m_MaxHP = MaxHP;
-		m_Class = Class;
-		m_Kills = kills;
-		m_ArmourEquip = ArmourEquip;
-	};
+		monster Shade;
+		Shade.SetStats(hero.m_MaxHP, hero.m_ATK, hero.m_Defense, hero.m_Speed, 0, "0..o..0o....", "Shade");
+		return Shade;
+	}
 };
 
