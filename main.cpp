@@ -187,7 +187,7 @@ int main()
 	_getch();
 
 	bool death = false;
-	bool movecheck;
+	bool movecheck = true;
 	bool runchck = false;
 	int prevloadedroomid;
 	do{
