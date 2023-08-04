@@ -67,8 +67,8 @@ inline void refreshInput()
 inline void usrInput()
 {
 	refreshInput();
-	CsrMoveTo(inputPos[0], inputPos[1]);
-	std::cout << getColour("blue", 1, 0);
+	CsrMoveTo(inputPos[0] - 1, inputPos[1]);
+	std::cout << getColour("blue", 1, 0) << ">";
 }
 inline void initializeScreen()
 {
