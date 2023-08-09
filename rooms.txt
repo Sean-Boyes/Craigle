@@ -3,10 +3,10 @@
 
 Great Cavern
 This is the cavern in which you fell into from above. The surrounding rocks have a sprinkling of vines and few small streams of water dripping down.
-In a pedestal near where you fell sits a glowing sword.
+In a pedestal near where you fell sits a glowing *Sword.
 Near where you fell you see the empty pedestal.
-You see thick vines blocking a path to the east.
-To the east you see the path revealed after cutting the vines.
+You see thick vines blocking a path to the *East and an open cave to the *West.
+To the *East you see the path revealed after cutting the vines and to the *West an open cave.
 -
 -
 34,
@@ -23,14 +23,42 @@ In the middle of the room you see a handheld Empty Lantern.
 -
 -
 -
-33,
-50|2,
+-
+10|2, 25|2,
 000000000
 -
+*10,0,0
+
+Stone Arch
+You see the path to the cavern *West and 
+-
+-
+a grand, closed stone archway to the *East. There is a glowing slit in the wall nearby. Your *Sword pulsates purple as it grows nearer to the slit.
+a stone archway with a swirling spiral inside to the *East. You think you see something on the other side of the swirl...
+-
+1,
+-
+-
+001000000
+34>35>36>$2>$You insert the sword into the slit. Suddenly, the archway lights up with a swiling purple vortex. It looks like there is something inside...$
 *1,0,0
 
+Forest Entrance
+You find yourself in a grand, dark forest. There is the stone archway to the *West and an entrance into the forest to the *East.
+You see an abandoned, rusty old *Empty Lantern propped up on a rock.
+-
+-
+-
+-
+1,
+33,
+5|6,
+000000000
+-
+*2,0,0
+
 Dark Forest
-A rather dark forest. Seems to be a dead end.
+A rather dark forest. You only see the path back to the *West
 -
 -
 -
@@ -41,20 +69,20 @@ After searching the nearby trees, you find a hidden path to the north.
 -
 000000100
 32>$6>$You shine your new lantern, revealing a dark forest.$
-*2,0,0
+*3,0,0
 
 Cavern Cave
-A damp and dreary little corner.
-On a rock you see a half-full flask of Fuel.
+A damp and dreary little corner. You see the way to the cavern to the *East.
+On a rock you see a half-full flask of *Fuel.
+-
+The *West wall has an odd sphereical hole carved out.
+You see the lifted *West wall, revealing a passage into the darkness
 -
 -
+31,
 -
--
--
-31,39,
--
-000000000
--
+000100000
+41>$3>$You insert the *Sphere Artifact into the hole. Suddenly, the *West wall lifts up, revealing a path.$31>$$Crazy$
 *-1,0,0
 
 The Chamber
@@ -84,3 +112,17 @@ An etheral realm?
 000000000
 -
 *-3,0,0
+
+The Basement
+Dusty room with cobwebs around
+-
+-
+-
+-
+-
+-
+-
+-
+000000000
+-
+*0,0,-1

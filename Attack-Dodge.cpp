@@ -90,7 +90,7 @@ inline int Attack(std::string hit, int frame)
     {
         CsrMoveTo(descPos2[0], descPos2[1]);
         std::cout << "\x1b[1;31m" << "Miss!" << "\x1b[1; 37m";
-        //printInfo(hero);
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         usrInput();
         return 1;
     }
@@ -98,6 +98,7 @@ inline int Attack(std::string hit, int frame)
     {
         CsrMoveTo(descPos2[0], descPos2[1]);
         std::cout << "\x1b[1;33mHit!            \x1b[1; 37m";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         usrInput();
         return 2;
     }
@@ -105,6 +106,7 @@ inline int Attack(std::string hit, int frame)
     {
         CsrMoveTo(descPos2[0], descPos2[1]);
         std::cout << "\x1b[1;32mCrit!            \x1b[1;37m";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         usrInput();
         return 3;
     }
@@ -161,7 +163,7 @@ inline bool Dodge(int window)
             if (_kbhit())
             {
                 CsrMoveTo(descPos3[0], descPos3[1]);
-                std::cout << "\x1b[1; 32m - <{ [=#=] }>-";
+                std::cout << "\x1b[1;32m-<{ [=#=] }>-";
                 usrInput();
                 std::this_thread::sleep_for(std::chrono::milliseconds(window));
                 CsrMoveTo(descPos2[0], descPos2[1]);
@@ -174,7 +176,7 @@ inline bool Dodge(int window)
             if (std::chrono::steady_clock::now() - start > std::chrono::seconds(1))
             {
                 CsrMoveTo(descPos3[0], descPos3[1]);
-                std::cout << "\x1b[1; 31m - <{ [=#=] }>-";
+                std::cout << "\x1b[1;31m-<{ [=#=] }>-";
                 usrInput();
                 std::this_thread::sleep_for(std::chrono::seconds(1));
                 CsrMoveTo(descPos2[0], descPos2[1]);

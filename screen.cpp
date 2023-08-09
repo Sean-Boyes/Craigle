@@ -39,15 +39,17 @@ static std::vector<int> descPos = { 9 , 8 };
 static std::vector<int> descPos2 = { 9 , 25 };
 static std::vector<int> descPos3 = { 9 , 35 };
 
-inline std::vector<std::vector<int>> knownRooms = { {0,0} };
-inline std::vector<int> currentPos = { 0,0 };
-inline std::vector<int> aroundPos = { 0,0 };
+inline std::vector<std::vector<int>> knownRooms = { {0,0,0} };
+inline std::vector<int> currentPos = { 0,0,0 };
+inline std::vector<int> aroundPos = { 0,0,0 };
 
 static int lineLength = 69;
+// prototyping
 inline void refreshDesc2();
 inline void refreshDesc3();
 inline void printDesc(std::string tempdesc, int textSpeed);
 inline void printDescForce(std::string tempdesc, int textSpeed);
+inline void betterGetch();
 
 inline void refreshInput()
 {
@@ -150,8 +152,7 @@ inline void printDesc(std::string tempdesc, int textSpeed) // rfind last space o
 	{
 		if (interupt)
 		{
-			printDescForce(preDesc, textSpeed);
-			interupt = false;
+			printDescForce(preDesc, 0);
 			return;
 		}
 		index = tempdesc.rfind(' ', 69);
@@ -160,7 +161,6 @@ inline void printDesc(std::string tempdesc, int textSpeed) // rfind last space o
 			if (interupt)
 			{
 				printDescForce(preDesc, textSpeed);
-				interupt = false;
 				return;
 			}
 			std::cout << tempdesc[i];
@@ -178,6 +178,8 @@ inline void printDesc(std::string tempdesc, int textSpeed) // rfind last space o
 		if (textSpeed == 0) break;
 		std::this_thread::sleep_for(std::chrono::milliseconds(1) * textSpeed * 0.01);
 	}
+	CsrMoveTo(48, 35);
+	std::cout << "[press any button to continue]";
 	usrInput();
 }
 inline void printDescForce(std::string tempdesc, int textSpeed) // rfind last space of 69 long string, get that index, cout that, go down 1, delete front till index, repeat. send into ascii object
@@ -204,6 +206,8 @@ inline void printDescForce(std::string tempdesc, int textSpeed) // rfind last sp
 	{
 		std::cout << tempdesc[i];
 	}
+	CsrMoveTo(48, 35);
+	std::cout << "[press any button to continue]";
 	usrInput();
 }
 inline void refreshDesc2()
@@ -247,6 +251,8 @@ inline void printDesc2(std::string tempdesc, int textSpeed)
 		if (textSpeed == 0) break;
 		std::this_thread::sleep_for(std::chrono::milliseconds(1) * textSpeed * 0.01);
 	}
+	CsrMoveTo(48, 35);
+	std::cout << "[press any button to continue]";
 	usrInput();
 }
 inline void refreshDesc3()
@@ -347,13 +353,13 @@ inline void printInfo(player& player)
 	printf("(%i, %i)", currentPos[0], currentPos[1]);
 	CsrMoveTo(108, 12);
 	std::cout << "ELEVATION: ";
-	printf("(%i)", 0);
+	printf("(%i)", currentPos[2]);
 
 	//other
 	CsrMoveTo(87, 15);
 	std::cout << "POTIONS: " << player.m_HealPot;
 	CsrMoveTo(108, 15);
-	std::cout << "RATS KILLED: " << 420; //temp change later plz
+	std::cout << "KILLED: " << player.m_Kills; //temp change later plz
 
 	//go back
 	usrInput();
@@ -399,14 +405,24 @@ inline void printMap()
 	croom.paint(getColour("red", 0, 1));
 	for (int i = 0; i < knownRooms.size(); i++)
 	{
-		if (knownRooms[i][0] > currentPos[0] + 2 || knownRooms[i][0] < currentPos[0] - 2 || knownRooms[i][1] > currentPos[1] + 2 || knownRooms[i][1] < currentPos[1] - 2) continue;
-		croom.place((knownRooms[i][0] - currentPos[0]) * 7 + 105, (knownRooms[i][1] - currentPos[1]) * -4 + 29);
+		if (knownRooms[i][0] > currentPos[0] + 2 ||
+			knownRooms[i][0] < currentPos[0] - 2 ||
+			knownRooms[i][1] > currentPos[1] + 2 ||
+			knownRooms[i][1] < currentPos[1] - 2 )
+		{
+			continue;
+		}
+		if (currentPos[2] == knownRooms[i][2])
+		{
+			croom.place((knownRooms[i][0] - currentPos[0]) * 7 + 105, (knownRooms[i][1] - currentPos[1]) * -4 + 29);
+		}
 	}
 	std::cout << getColour("yellow", 1, 1);
 	croom.data = { {"O"," "," "," ","O"},{" "," "," "," "," "},{"O"," "," "," ","O"} };
 	croom.place(knownRooms[0][0] * 7 + 105, knownRooms[0][1] * -4 + 29);
 	CsrMoveTo(103, 30);
 	std::cout << getEffect('r');
+
 	//cout << getColour("red", 0, 1) << "[";
 	//CsrMoveTo(104, 30);
 	//cout << getColour("red", 0, 1) << "]";
@@ -421,16 +437,16 @@ inline void refreshScreen()
 	bounds.place(0, 0);
 	usrInput();
 }
-inline void lookAround(std::vector<room> rooms, int xcord, int ycord)
+inline void lookAround(std::vector<room> rooms, int xcord, int ycord, int zcord)
 {
 	//loop throught rooms in 4 directions removing corners
-	currentPos = { xcord, ycord };
+	currentPos = { xcord, ycord, zcord };
 	for (int i = -1; i <= 1; i++)
 	{
 		for (int ii = -1; ii <= 1; ii++)
 		{
-			aroundPos = { (currentPos[0] + ii),(currentPos[1] + i) };
-			int roomid = room::CordLookup(rooms, aroundPos[0], aroundPos[1], 0);
+			aroundPos = { (currentPos[0] + ii),(currentPos[1] + i),zcord };
+			int roomid = room::CordLookup(rooms, aroundPos[0], aroundPos[1], aroundPos[2]);
 			if (ii == i || -ii == i)
 			{
 				continue;
@@ -450,6 +466,16 @@ inline void lookAround(std::vector<room> rooms, int xcord, int ycord)
 }
 inline void interuptThread()
 {
-	_getch();
+	betterGetch();
 	interupt = true;
+}
+inline void betterGetch()
+{
+	std::string garbage; // put the getch somewhere to remove errors
+	CsrMoveTo(48, 35);
+	std::cout << "[press any button to continue]";
+	CsrMoveTo(48, 35);
+	garbage = _getch();
+	std::cout << "                              ";
+	usrInput();
 }

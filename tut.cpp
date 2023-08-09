@@ -10,7 +10,7 @@ void tutorial()
 	//printDesc2("", 1)
 	std::string input;
 	printDesc("\x1b[1;37mWelcome Adventurer! Before we get started its best to introduce you to the system!", 1);
-	_getch();
+	betterGetch();
 	printDesc("It looks like there is a room to the East, try moving there now by typing \"Go East\"\n", 1);
 	while (true)
 	{
@@ -122,7 +122,7 @@ void tutorial()
 		}
 	}
 	//printDesc2("The door opened! Looks like you got the idea of how to play now too! Last thing to do is pick your class! ", 1);
-	_getch();
+	betterGetch();
 
 	return;
 

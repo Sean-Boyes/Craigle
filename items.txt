@@ -69,3 +69,10 @@ A shiny golden key with a brightly glowing emerald end.
 -
 -
 %40
+
+Sphere Artifact
+An oddly perfect sphere. Looks like it's magical in some way.
+-
+-
+-
+%41

@@ -65,7 +65,7 @@ int main()
 	std::vector<item> inventory;
 	std::ifstream itemfile("items.txt");
 
-
+	// Load Item File(s)
 	if (itemfile.is_open())
 	{
 		std::string line;
@@ -113,7 +113,7 @@ int main()
 	std::ifstream roomfile("rooms.txt");
 
 
-
+	// Load Room File(s)
 	if (roomfile.is_open())
 	{
 		std::string line;
@@ -142,7 +142,7 @@ int main()
 		return 980;
 	}
 
-
+	// Class Selection
 	printDesc("\x1b[1;37mWelcome Adventurer! Would you like to be a Fighter, Paladin, or Rogue? ", 1);
 	player hero;
 	while (true)
@@ -182,14 +182,21 @@ int main()
 		}
 	}
 
-	printDesc("Trudging through the caliginous forest, the adventurer pushes forward. " + hero.m_Name + " the " + hero.m_Class + " is in search of mythical anceint riches said to reside in this forest. You have been hunting this treasure for a many fortnight by now, yet you feel you are near the end of their journey.\n\n   \x1b[90m{\x1b[0m    The forest is quiet and peaceful, but not in a comforting way. Every so often you swear you hear a quiet rustle nearby, yet nothing ever comes of it. Through the foliage the adventurer presses on. Suddenly, with an uncareful step you slip on a mud covered hillside! Down the hill you tumble, until with a crash everything goes black.",2 );
-	printDesc2("You awake with a hurting head and a few more bruises than before, and find yourself in the bottom of giant cavern, with seemingly no easy way back up.Upon looking up towards the top of the cavern, you see not the forest you were akin to but what seems to be a purple ceiling of magic.Whatever place you have found yourself in, it is clear you need to find yourself at the exit sooner than later...", 2);
-	_getch();
+	// Introduction
+	bool introskip = true;
+	if (!introskip)
+	{
+		printDesc("Trudging through the caliginous forest, the adventurer pushes forward. " + hero.m_Name + " the " + hero.m_Class + " is in search of mythical anceint riches said to reside in this forest. You have been hunting this treasure for a many fortnight by now, yet you feel you are near the end of their journey.\n\n   \x1b[90m{\x1b[0m    The forest is quiet and peaceful, but not in a comforting way. Every so often you swear you hear a quiet rustle nearby, yet nothing ever comes of it. Through the foliage the adventurer presses on. Suddenly, with an uncareful step you slip on a mud covered hillside! Down the hill you tumble, until with a crash everything goes black.", 2);
+		printDesc2("You awake with a hurting head and a few more bruises than before, and find yourself in the bottom of giant cavern, with seemingly no easy way back up.Upon looking up towards the top of the cavern, you see not the forest you were akin to but what seems to be a purple ceiling of magic.Whatever place you have found yourself in, it is clear you need to find yourself at the exit sooner than later...", 2);
+		betterGetch();
+	}
 
 	bool death = false;
 	bool movecheck = true;
 	bool runchck = false;
 	int prevloadedroomid;
+
+	// Main loop
 	do{
 		if (xcord == endx && (ycord == endy && zcord == endz))
 		{
@@ -197,26 +204,32 @@ int main()
 		}
 		int loadedroomid = room::CordLookup(rooms, xcord, ycord, zcord);
 
-		lookAround(rooms, xcord, ycord);
+		// Room does not exist
+		if (loadedroomid == -1)
+		{
+			printDesc2("You can't go that way ", 1);
+			xcord = prevx; ycord = prevy; zcord = prevz;
+			loadedroomid = prevloadedroomid;
+		}
+		lookAround(rooms, xcord, ycord, zcord);
 		printMap();
 
-		// multithread opening text
+		tmpDesc = "";
 
+		// Room is too dark
 		if (rooms[loadedroomid].m_properties[6] == true)
 		{
 			printInfo(hero);
-			lookAround(rooms, xcord, ycord);
-			refreshDesc();
+			tmpDesc += "It's too dark to see anything ";
 			refreshTitle("? ? ?");
 		}
 		else
 		{
 			printInfo(hero);
-			lookAround(rooms, xcord, ycord);
+			lookAround(rooms, xcord, ycord, zcord);
 			refreshTitle(rooms[loadedroomid].m_Title);
-			tmpDesc = "";
 
-			if (rooms[loadedroomid].m_properties[6] == true)
+			if (rooms[loadedroomid].m_properties[6] == true) // not sure if this is needed
 			{
 				tmpDesc += "It's too dark to see anything ";
 			}
@@ -240,25 +253,31 @@ int main()
 					tmpDesc += rooms[loadedroomid].m_PreeventDescr;
 				}
 			}
+
+			// multithread opening text
 			std::thread t1(printDesc, tmpDesc, 1);
+			//std::this_thread::sleep_for(std::chrono::milliseconds(500));
 			_getch();
+			CsrMoveTo(48, 35);
+			std::cout << "                              ";
 			interupt = true;
-			std::this_thread::sleep_for(std::chrono::milliseconds(1));
-			interupt = false;
+			//std::this_thread::sleep_for(std::chrono::milliseconds(10));
 			t1.join();
+			interupt = false;
 
 		}
 		// end multithread opening text
 
-		if (loadedroomid == -1)
-		{
-			printDesc2("You can't go that way ", 1);
-			xcord = prevx; ycord = prevy; zcord = prevz;
-			loadedroomid = prevloadedroomid;
-		}
-		if (rooms[loadedroomid].m_properties[6] == true)
+		//if (loadedroomid == -1)
+		//{
+		//	printDesc2("You can't go that way ", 1);
+		//	xcord = prevx; ycord = prevy; zcord = prevz;
+		//	loadedroomid = prevloadedroomid;
+		//}
+		if (rooms[loadedroomid].m_properties[6] == true) // again not sure if needed, legacy code maybe
 		{
 			refreshTitle("? ? ?");
+			printDesc("It's too dark to see anything ", 1);
 		}
 		else
 		{
@@ -317,6 +336,9 @@ int main()
 					xcord = prevx; ycord = prevy; zcord = prevz;
 					loadedroomid = prevloadedroomid;
 					refreshTitle(rooms[loadedroomid].m_Title);
+					printInfo(hero);
+					lookAround(rooms,xcord,ycord,zcord); // probably not needed here
+					printMap(); // probably not needed here
 					break;
 				}
 				else
@@ -324,6 +346,9 @@ int main()
 					++hero.m_Kills;
 					printInfo(hero);
 				}
+				printInfo(hero);
+				lookAround(rooms, xcord, ycord, zcord);
+				printMap();
 			}
 		}
 		if (death == true)
@@ -340,6 +365,8 @@ int main()
 		rooms[loadedroomid].m_MonsterID.clear();
 		prevx = xcord; prevy = ycord; prevz = zcord;
 		prevloadedroomid = loadedroomid;
+		lookAround(rooms, xcord, ycord, zcord); // maybe not needed here
+		printMap(); // maybe not needed here
 
 		movecheck = false;
 
@@ -818,6 +845,8 @@ int main()
 							rooms[loadedroomid].m_roomevent.erase(rooms[loadedroomid].m_roomevent.begin() + i + 2);
 							rooms[loadedroomid].m_roomevent.erase(rooms[loadedroomid].m_roomevent.begin() + i + 1);
 							rooms[loadedroomid].m_roomevent.erase(rooms[loadedroomid].m_roomevent.begin() + i);
+							betterGetch();
+							//std::this_thread::sleep_for(std::chrono::seconds(2)); // replace later
 							break;
 						}
 					}

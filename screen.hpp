@@ -19,5 +19,6 @@ inline void testmap();
 inline void refreshMap();
 inline void printMap();
 inline void refreshScreen();
-inline void lookAround(std::vector<room> rooms, int xcord, int ycord);
+inline void lookAround(std::vector<room> rooms, int xcord, int ycord, int zcord);
 inline void interuptThread();
+inline void betterGetch();

@@ -20,6 +20,9 @@
 
 inline int BattleStart(player& hero, monster enemy)
 {
+	bool godmode = false;
+	CsrMoveTo(9, 23);
+	std::cout << "A " << enemy.m_Name << " appears!";
 	std::string input;
 	bool herogo = false;
 	if (hero.m_Speed > enemy.m_Speed)
@@ -36,6 +39,7 @@ inline int BattleStart(player& hero, monster enemy)
 			transform(input.begin(), input.end(), input.begin(), ::tolower);
 			if (input == "attack")
 			{
+				if (godmode) { enemy.m_HP = 0; break; }
 				int swipe = Attack(enemy.m_Hitbar, enemy.m_Frame);
 
 				if (swipe == 2)
@@ -74,11 +78,15 @@ inline int BattleStart(player& hero, monster enemy)
 				if (esc < enemy.m_EscPercent)
 				{
 					printDesc2("Escaped! ", 1);
+					printInfo(hero);
+					CsrMoveTo(9, 23);
+					std::cout << "                             ";
 					return 3;
 				}
 				else
 				{
 					printDesc2("Miss! ", 1);
+					std::this_thread::sleep_for(std::chrono::seconds(1));
 				}
 				herogo = false;
 
@@ -103,12 +111,16 @@ inline int BattleStart(player& hero, monster enemy)
 		if (hero.m_HP <= 0)
 		{
 			printDesc2("You died! ", 1);
+			CsrMoveTo(9, 23);
+			std::cout << "                             ";
 			return 1;
 			break;
 		}
 		else if (enemy.m_HP <= 0)
 		{
 			printDesc2("Enemy Slaughtered! ", 1);
+			CsrMoveTo(9, 23);
+			std::cout << "                             ";
 			return 2;
 			break;
 		}
