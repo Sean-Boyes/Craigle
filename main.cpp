@@ -153,7 +153,7 @@ int main()
 		{
 			printDesc2("What should we call you? ", 1);
 			std::getline(std::cin, input);
-			hero.SetStats(25, 0, 15, 25, 10, 10, 0, 1, 25, input, "Paladin", 0, false);
+			hero.SetStats(25, 0, 15, 25, 10, 10, 0, 2, 25, input, "Paladin", 0, false);
 			printInfo(hero);
 			break;
 
@@ -162,7 +162,7 @@ int main()
 		{
 			printDesc2("What should we call you? ", 1);
 			std::getline(std::cin, input);
-			hero.SetStats(15, 0, 15, 10, 25, 25, 0, 1, 15, input, "Rouge", 0, false);
+			hero.SetStats(15, 0, 15, 10, 25, 25, 0, 2, 15, input, "Rouge", 0, false);
 			printInfo(hero);
 			break;
 
@@ -171,7 +171,7 @@ int main()
 		{
 			printDesc2("What should we call you? ", 1);
 			std::getline(std::cin, input);
-			hero.SetStats(20, 0, 20, 20, 20, 15, 0, 1, 20, input, "Fighter", 0, false);
+			hero.SetStats(20, 0, 20, 20, 20, 15, 0, 2, 20, input, "Fighter", 0, false);
 			printInfo(hero);
 			break;
 
@@ -270,7 +270,8 @@ int main()
 
 		//if (loadedroomid == -1)
 		//{
-		//	printDesc2("You can't go that way ", 1);
+		//	printDesc2("You can't 
+		//  that way ", 1);
 		//	xcord = prevx; ycord = prevy; zcord = prevz;
 		//	loadedroomid = prevloadedroomid;
 		//}
@@ -296,7 +297,7 @@ int main()
 				int percent = rooms[loadedroomid].m_RandEnc[counter];
 				int mid = rooms[loadedroomid].m_RandEnc[counter + 1];
 				int chance2 = roll(1, 100);
-				if (percent < chance2)
+				if (percent > chance2)
 				{
 					battlecheck = true;
 					runchck = true;
@@ -427,13 +428,27 @@ int main()
 		}
 		else if (input == "go down" || (input == "down" || input == "d"))
 		{
-			--zcord;
-			movecheck = true;
+			if (rooms[loadedroomid].m_properties[4] == true)
+			{
+				printDesc2("You can't go that way ", 1);
+			}
+			else
+			{
+				--zcord;
+				movecheck = true;
+			}
 		}
 		else if (input == "go up" || (input == "up" || input == "u"))
 		{
-			++zcord;
-			movecheck = true;
+			if (rooms[loadedroomid].m_properties[5] == true)
+			{
+				printDesc2("You can't go that way ", 1);
+			}
+			else
+			{
+				++zcord;
+				movecheck = true;
+			}
 		}
 		else if (input == "heal" || (input == "use potion" || input == "use health potion"))
 		{
@@ -920,6 +935,10 @@ int main()
 	if (death == true)
 	{
 		std::cout << "The Adventurer has fallen.\n";
+	}
+	else
+	{
+		std::cout << "You find yourself once again above the cavern in which you fell into. It seems you made it out alive...for now\nEND";
 	}
 	return 0;
 }

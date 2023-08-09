@@ -190,7 +190,7 @@ public:
 	static monster GetShade(player hero)
 	{
 		monster Shade;
-		Shade.SetStats(hero.m_MaxHP, hero.m_ATK, hero.m_Defense, hero.m_Speed, 0, "0..o..0o....", "Shade");
+		Shade.SetStats(hero.m_MaxHP*2, hero.m_ATK*2, hero.m_Defense*2, hero.m_Speed*2, 0, "0..o..0o....", "Shade");
 		return Shade;
 	}
 };

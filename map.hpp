@@ -29,7 +29,7 @@ public:
 
     room() {};
 
-    room(std::string Title, std::string ConstDescr, std::string PreitemDescr, std::string PostitemDescr, std::string PreeventDescr, std::string PosteventDescr, std::string Search, std::string MonsterID, std::string ItemID, std::string RandEnc, std::string properties, std::string roomevent, std::string cords) : m_Title(Title), m_ConstDescr(ConstDescr), m_PreeventDescr(PreeventDescr), m_PosteventDescr(PosteventDescr), m_PreitemDescr(PreitemDescr), m_PostitemDescr(PostitemDescr), m_Search(Search), m_Cleared(false)
+    room(std::string Title, std::string ConstDescr, std::string PreitemDescr, std::string PostitemDescr, std::string PreeventDescr, std::string PosteventDescr, std::string Search, std::string MonsterID, std::string ItemID, std::string RandEnc, std::string properties, std::string roomevent, std::string cords) : m_Title(Title), m_Search(Search), m_Cleared(false)
     {
         //propety order:: lockednorth, lockedsouth, lockedeast, lockedwest, lockeddown, lockedup, dark, flooded, freezing
         size_t x = cords.find(',');
@@ -37,6 +37,52 @@ public:
         m_xcord = stoi(cords.substr(0, x));
         m_zcord = stoi(cords.substr(z + 1, cords.size() - z));
         m_ycord = stoi(cords.substr(x + 1, z - x));
+
+        if (ConstDescr == "-")
+        {
+            m_ConstDescr = "";
+        }
+        else
+        {
+            m_ConstDescr = ConstDescr;
+        }
+
+        if (PreeventDescr == "-")
+        {
+            m_PreeventDescr = "";
+        }
+        else
+        {
+            m_PreeventDescr = PreeventDescr;
+        }
+
+
+        if (PosteventDescr == "-")
+        {
+            m_PosteventDescr = "";
+        }
+        else
+        {
+            m_PosteventDescr = PosteventDescr;
+        }
+
+        if (PreitemDescr == "-")
+        {
+            m_PreitemDescr = "";
+        }
+        else
+        {
+            m_PreitemDescr = PreitemDescr;
+        }
+
+        if (PostitemDescr == "-")
+        {
+            m_PostitemDescr = "";
+        }
+        else
+        {
+            m_PostitemDescr = PostitemDescr;
+        }
 
         std::string temp;
         for (char& c : MonsterID)

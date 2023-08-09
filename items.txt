@@ -23,13 +23,13 @@ Sword
 The blade you found upon falling into this realm. It seems to occasionally glow a soft purple.
 3
 150
--
+43,35$
 *34
 
 
 Sword
 The blade you found upon falling into this realm. Something you've done to it seems to have made it stronger. It glows purple sometimes.
-4
+5
 175
 -
 *35
@@ -37,7 +37,7 @@ The blade you found upon falling into this realm. Something you've done to it se
 
 Sword
 The blade you found upon falling into this realm. You seem to have awakened some mysterious power inside of it, increasing its effectiveness. It shines bright purple often.
-5
+7
 200
 -
 *36
@@ -75,4 +75,53 @@ An oddly perfect sphere. Looks like it's magical in some way.
 -
 -
 -
-%41
+%41 
+
+Cathedral Key
+A silver key in the form of a crucifix. It radiates light holy magic.
+-
+-
+-
+%42
+
+Holy Water
+A bottle of holy water, used for purify and enhancing magical aritfacts. The sword seems to take interest in it as you do.
+-
+-
+34,35$
+%43
+
+Grapple Hook
+A long rope tied to a steel hook. Good for climbing.
+-
+-
+-
+%44
+
+Rusty Key
+A rusty old key.
+-
+-
+-
+%45
+
+Discarded Note
+It reads "Return the key to its dark resting place."
+-
+-
+-
+%46
+
+Bones
+A pile of bones. They are the skeleton's money.
+-
+-
+-
+%47
+
+Rat Skeleton
+The skeleton of a rat. It looks like the bones could fit into tiny, tight spaces...
+-
+-
+-
+%48

@@ -89,7 +89,7 @@ inline int Attack(std::string hit, int frame)
     if (hit[hitstate] == '.')
     {
         CsrMoveTo(descPos2[0], descPos2[1]);
-        std::cout << "\x1b[1;31m" << "Miss!" << "\x1b[1; 37m";
+        std::cout << "\x1b[1;31m" << "Miss!             " << "\x1b[1; 37m";
         std::this_thread::sleep_for(std::chrono::seconds(1));
         usrInput();
         return 1;
@@ -217,6 +217,7 @@ inline int heal(player& hero)
         {
             hero.m_HP = hero.m_MaxHP;
         }
+        hero.m_HealPot = hero.m_HealPot - 1;
         return true;
     }
 }

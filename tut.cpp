@@ -1,11 +1,10 @@
 #pragma once
 
 #include "battle.hpp"
-#include "tut.hpp"
 #include "screen.hpp"
 
 
-void tutorial()
+inline void tutorial()
 {
 	//printDesc2("", 1)
 	std::string input;

@@ -39,6 +39,7 @@ inline int BattleStart(player& hero, monster enemy)
 		{
 
 			printDesc3("What will you do now? ", 1);
+			printInfo(hero);
 
 			std::cin >> input;
 			transform(input.begin(), input.end(), input.begin(), ::tolower);
@@ -59,7 +60,8 @@ inline int BattleStart(player& hero, monster enemy)
 				}
 				else
 				{
-					printDesc2("You missed! ", 1);
+					//printDesc2("You missed!                ", 1);
+					//std::this_thread::sleep_for(std::chrono::seconds(1));
 				}
 				herogo = false;
 			}
@@ -70,12 +72,14 @@ inline int BattleStart(player& hero, monster enemy)
 				{
 					herogo = false;
 				}
+				printInfo(hero);
 			}
 			else if (input == "hp" || input == "check hp")
 			{
 				CsrMoveTo(descPos2[0], descPos2[2]);
 				std::cout << hero.m_HP << std::endl;
 				usrInput();
+				printInfo(hero);
 			}
 			else if (input == "run")
 			{
@@ -86,11 +90,12 @@ inline int BattleStart(player& hero, monster enemy)
 					printInfo(hero);
 					CsrMoveTo(9, 23);
 					std::cout << "                             ";
+					printInfo(hero);
 					return 3;
 				}
 				else
 				{
-					printDesc2("Miss! ", 1);
+					printDesc2("Miss!               ", 1);
 					std::this_thread::sleep_for(std::chrono::seconds(1));
 				}
 				herogo = false;
