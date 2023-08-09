@@ -518,7 +518,7 @@ int main()
 				printDesc2("You have no such thing ", 1);
 			}
 		}
-		else if (input == "look")
+		else if (input == "look") // legacy
 		{
 			std::string tmp = "";
 			if (rooms[loadedroomid].m_properties[6] == true)
@@ -862,6 +862,23 @@ int main()
 				printDesc2("You have no such thing ", 1);
 			}
 
+		}
+		else if (input == "help" || input == "h" || input == "commands")
+		{
+			refreshDesc2();
+			refreshDesc3();
+			CsrMoveTo(9, 25);
+
+			std::vector<std::string> help = { "go {direction}", "heal", "get {item}", "view {item}", "equip {item}", "unequip {item}", "inventory", "search", "combine {item1} and {item2}", "use {item}", "help"};
+			for (int i = 0; i < help.size(); i++)
+			{
+				std::cout << help[i] << "\n";
+				CsrMove('r', 8);
+			}
+			betterGetch();
+
+			refreshDesc2();
+			refreshDesc3();
 		}
 		else
 		{

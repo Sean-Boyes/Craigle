@@ -213,7 +213,7 @@ inline void printDescForce(std::string tempdesc, int textSpeed) // rfind last sp
 inline void refreshDesc2()
 {
 	int length = 78 - 9;
-	int height = 35 - 26;
+	int height = 36 - 26;
 	CsrMoveTo(9, 25);
 	for (int i = 0; i < height; i++)
 	{
