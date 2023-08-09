@@ -22,3 +22,4 @@ inline void refreshScreen();
 inline void lookAround(std::vector<room> rooms, int xcord, int ycord, int zcord);
 inline void interuptThread();
 inline void betterGetch();
+inline void refreshScreenFull(player hero);

@@ -23,16 +23,21 @@ inline int BattleStart(player& hero, monster enemy)
 	bool godmode = false;
 	CsrMoveTo(9, 23);
 	std::cout << "A " << enemy.m_Name << " appears!";
+	betterGetch();
 	std::string input;
 	bool herogo = false;
+	int enemyMaxHp = enemy.m_HP;
 	if (hero.m_Speed > enemy.m_Speed)
 	{
 		herogo = true;
 	}
 	do
 	{
+		CsrMoveTo(9, 23);
+		std::cout << enemy.m_Name << " HP: " << enemy.m_HP << " / " << enemyMaxHp << "       ";
 		if (herogo == true)
 		{
+
 			printDesc3("What will you do now? ", 1);
 
 			std::cin >> input;

@@ -27,6 +27,7 @@ inline ASCIIobject panel3;
 inline ASCIIobject seperator;
 inline ASCIIobject input;
 inline ASCIIobject croom;
+inline ASCIIobject cdoor;
 
 inline std::string preTitle = "";
 inline std::string preDesc = "";
@@ -40,6 +41,8 @@ static std::vector<int> descPos2 = { 9 , 25 };
 static std::vector<int> descPos3 = { 9 , 35 };
 
 inline std::vector<std::vector<int>> knownRooms = { {0,0,0} };
+inline std::vector<std::vector<int>> knownDoors = { {0,0,0,0,0,0,0} }; // {room} to {room} is {locked} 
+
 inline std::vector<int> currentPos = { 0,0,0 };
 inline std::vector<int> aroundPos = { 0,0,0 };
 
@@ -402,6 +405,7 @@ inline void printMap()
 
 	std::cout << getColour("yellow", 0, 1);
 	croom.data = { {"O"," "," "," ","O"},{" "," "," "," "," "},{"O"," "," "," ","O"} };
+	cdoor.data = { {" ", " "} };
 	croom.paint(getColour("red", 0, 1));
 	for (int i = 0; i < knownRooms.size(); i++)
 	{
@@ -414,9 +418,30 @@ inline void printMap()
 		}
 		if (currentPos[2] == knownRooms[i][2])
 		{
+			// place rooms in range
 			croom.place((knownRooms[i][0] - currentPos[0]) * 7 + 105, (knownRooms[i][1] - currentPos[1]) * -4 + 29);
 		}
 	}
+	// doors are pain
+	// 
+	//for (int i = 0; i < knownDoors.size(); i++)
+	//{
+	//	if (knownDoors[i][0] > currentPos[0] + 2 ||
+	//		knownDoors[i][0] < currentPos[0] - 2 ||
+	//		knownDoors[i][1] > currentPos[1] + 2 ||
+	//		knownDoors[i][1] < currentPos[1] - 2)
+	//	{
+	//		continue;
+	//	}
+	//	if (currentPos[2] == knownDoors[i][2])
+	//	{
+	//		// place doors in range
+	//		std::cout << getColour("white", 1, 1);
+	//		cdoor.place((knownDoors[i][0] - currentPos[0]) * 7 + 103, (knownDoors[i][1] - currentPos[1]) * -4 + 30);
+	//		cdoor.place((knownDoors[i][3] - currentPos[0]) * 7 + 103, (knownDoors[i][4] - currentPos[1]) * -4 + 30);
+	//	}
+	//}
+
 	std::cout << getColour("yellow", 1, 1);
 	croom.data = { {"O"," "," "," ","O"},{" "," "," "," "," "},{"O"," "," "," ","O"} };
 	croom.place(knownRooms[0][0] * 7 + 105, knownRooms[0][1] * -4 + 29);
@@ -458,6 +483,7 @@ inline void lookAround(std::vector<room> rooms, int xcord, int ycord, int zcord)
 			else if (roomid != -1)
 			{
 				knownRooms.push_back(aroundPos);
+				knownDoors.push_back({ currentPos[0],currentPos[1],currentPos[2],aroundPos[0],aroundPos[1],aroundPos[2],0 });
 			}
 		}
 	}
@@ -477,5 +503,17 @@ inline void betterGetch()
 	CsrMoveTo(48, 35);
 	garbage = _getch();
 	std::cout << "                              ";
+	usrInput();
+}
+inline void refreshScreenFull(player hero, std::string title)
+{
+	initializeScreen();
+	printInfo(hero);
+	printMap();
+	preTitle = title;
+	CsrMoveTo(titlePos[0], titlePos[1]);
+	std::cout << "                                                                     ";
+	CsrMoveTo(titlePos[0], titlePos[1]);
+	std::cout << getEffect('b') << getEffect('u') << title << getEffect('r');
 	usrInput();
 }

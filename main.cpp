@@ -880,6 +880,37 @@ int main()
 			refreshDesc2();
 			refreshDesc3();
 		}
+		else if (input == "refresh" || input == "fix")
+		{
+			refreshScreenFull(hero, rooms[loadedroomid].m_Title);
+
+			std::string tmp = "";
+			if (rooms[loadedroomid].m_properties[6] == true)
+			{
+				tmp += "It's too dark to see anything ";
+			}
+			else
+			{
+				tmp += rooms[loadedroomid].m_ConstDescr + " ";
+				if (rooms[loadedroomid].m_ItemID.size() == 0)
+				{
+					tmp += rooms[loadedroomid].m_PostitemDescr + " ";
+				}
+				else
+				{
+					tmp += rooms[loadedroomid].m_PreitemDescr + " ";
+				}
+				if (rooms[loadedroomid].m_roomevent.size() == 0)
+				{
+					tmp += rooms[loadedroomid].m_PosteventDescr + "\n";
+				}
+				else
+				{
+					tmp += rooms[loadedroomid].m_PreeventDescr + "\n";
+				}
+			}
+			printDesc(tmp, 1);
+		}
 		else
 		{
 			printDesc2("Cannot understand entry ", 1);
