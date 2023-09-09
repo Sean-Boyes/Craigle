@@ -12,11 +12,11 @@ To the *East you see the path revealed after cutting the vines and to the *West 
 34,
 -
 001000000
-34>35>36>$2>$You cut through the vines, revealing a path *East.$
+34>35>36>$2>$You cut through the vines, revealing a path east.$
 *0,0,0
 
 Cavern Arch
-You see the path to the cavern *West and 
+You see the path to the cavern *West and
 -
 -
 a grand, closed stone archway to the *East. There is a glowing slit in the wall nearby. Your *Sword pulsates purple as it grows nearer to the slit.
@@ -30,7 +30,7 @@ a stone archway with a swirling spiral inside to the *East. You think you see so
 *1,0,0
 
 Forest Arch
-You find yourself in a grand, dark forest. There is the stone archway to the *West and an entrance into the forest to the *East. 
+You find yourself in a grand, dark forest. There is the stone archway to the *West and an entrance into the forest to the *East.
 You see an abandoned, rusty old *Empty Lantern propped up on a rock.
 -
 -
@@ -76,7 +76,7 @@ Well Mouth
 -
 -
 The mouth of the well you blindly slid into. You can't climb back out. Only way to go is further in, *North.
-The mouth of the well you blindly slid into. Using the grapple hook you can climb back *Up or go *North.
+-
 -
 -
 -
@@ -100,7 +100,7 @@ You see a lost *Rusty Key
 *3,2,-1
 
 Well Cave 2
-Part of the dark well's cave. 
+Part of the dark well's cave.
 On the ground you see a discarded *Grapple Hook
 -
 -
@@ -114,8 +114,8 @@ On the ground you see a discarded *Grapple Hook
 *3,3,-1
 
 Cathedral Outside
-The outside to a grand cathedral. It looks long abandoned and decrepit. The walls are adorned with eloquent trims and stained-glass murals. 
-You see a *Discard Note nailed to the door. 
+The outside to a grand cathedral. It looks long abandoned and decrepit. The walls are adorned with eloquent trims and stained-glass murals.
+You see a *Discard Note nailed to the door.
 -
 There is a passage to the forest to the *West and the locked Cathedral entrance *East.
 There is a passage to the forest to the *West and the unlocked Cathedral entrance is *East
@@ -128,7 +128,7 @@ There is a passage to the forest to the *West and the unlocked Cathedral entranc
 *4,0,0
 
 Cathedral Aisles
-The empty aisles of the cathedral. You see the exit *West, stairs going *Down and a 
+The empty aisles of the cathedral. You see the exit *West, stairs going *Down and a
 -
 -
 locked door to the *North.
@@ -142,8 +142,8 @@ door to the *North.
 *5,0,0
 
 Cathedral Crypt
-The underfloor of the cathedral. The room is littered with coffins, some nailed shut. 
-Ontop a coffin you see a silver *Cathedral Key. 
+The underfloor of the cathedral. The room is littered with coffins, some nailed shut.
+Ontop a coffin you see a silver *Cathedral Key.
 -
 You see another empty stone archway to the *North, a slit in the wall, and the stairs going *Up.
 You see the activated stone archway to the *North, a slit in the wall, and the stairs going *Up.
@@ -156,7 +156,7 @@ You see the activated stone archway to the *North, a slit in the wall, and the s
 *5,0,-1
 
 Dungeon Arch
-The entrance to an isolated underground dungeon. You can see the archway back to the cathedral *South and a path deeper in *North. 
+The entrance to an isolated underground dungeon. You can see the archway back to the cathedral *South and a path deeper in *North.
 -
 -
 There is a shadowy spirit of a guard dog guarding the *North path; it does not look like it will let you through...
@@ -170,7 +170,7 @@ The shadowy guard dog spirit has gone over to the corner playing with the bone y
 *5,1,-1
 
 Dungeon Halls
-The dark and dreary halls of the dungeon. 
+The dark and dreary halls of the dungeon.
 -
 -
 You see the path back to the arch *South, a locked door to the *North, and a path deeper in *East.
@@ -184,7 +184,7 @@ You see the path back to the arch *South, a door to the *North, and a path deepe
 *5,2,-1
 
 Dungeon Arena
-The grand yet chared arena home to the dragon. This arena looks well use, littered by fallen victims of the dragon's wrath reduced to nothing but bone and steel. 
+The grand yet chared arena you slew a dragon in. This arena looks well use, littered by fallen victims of the dragon's wrath reduced to nothing but bone and steel.
 -
 -
 You see another unactive archway to the *North, a slit in the wall, and the path back to the halls *South.
@@ -226,7 +226,7 @@ The underfloors of the temple. The inside is full of various cultish artifacts a
 *5,5,-1
 
 Temple Alter
-The main room of the temple. It appears to be an elevated, circular platfrom surrounded by stands of onlookers, all adorned with dark robes. 
+The main room of the temple. It appears to be an elevated, circular platfrom surrounded by stands of onlookers, all adorned with dark robes.
 The onlookers' gazes are all fixed upon a central *Sphere Artifact place upon the centre alter.
 The onlookers' gazes are now all fixed upon you. 
 -
@@ -254,7 +254,7 @@ The holding chambers of the dungeon. You see the path back towards the halls *We
 *6,2,-1
 
 Rubber Chamber
-This room is almost completely white, not a spec of dust or dirt tarnishing it. The walls are maybe of rubber, and you swear you can always hear the squeak of a rodent nearby. The only way in or out is *East. 
+This room is almost completely white, not a spec of dust or dirt tarnishing it. The walls are maybe of rubber, and you swear you can always hear the squeak of a rodent nearby. The only way in or out is *East.
 You see a *Rat Skeleton in the middle of the room.
 -
 -
@@ -268,7 +268,7 @@ You see a *Rat Skeleton in the middle of the room.
 *7,2,-1
 
 Dark Chamber
-This room is extremely dark and dusty. Shockingly dirty despite being in a creepy abandonded dungeon. The only way in or out it *South. 
+This room is extremely dark and dusty. Shockingly dirty despite being in a creepy abandonded dungeon. The only way in or out it *South.
 You see a skeleton wearing a set of *Chainmail in the corner.
 You see the naked skeleton tossed aside by you clawing its last mortal possesion away from it.
 -
@@ -282,7 +282,7 @@ You see the naked skeleton tossed aside by you clawing its last mortal possesion
 *6,3,-1
 
 Cathedral Backroom
-An abandoned room of the Cathedral. Looks like it could have been an office. You see the exit *South. 
+An abandoned room of the Cathedral. Looks like it could have been an office. You see the exit *South.
 Ontop a desk you see a gleaming bottle of *Holy Water.
 -
 -
@@ -296,8 +296,8 @@ Ontop a desk you see a gleaming bottle of *Holy Water.
 *5,1,0
 
 Cavern Cave
-A damp and dreary little corner. You see the way to the cavern to the *East. 
-On a rock you see a half-full flask of *Fuel. 
+A damp and dreary little corner. You see the way to the cavern to the *East.
+On a rock you see a half-full flask of *Fuel.
 -
 The *West wall has an odd sphereical hole carved out.
 You see the lifted *West wall, revealing a passage into the darkness
@@ -306,12 +306,12 @@ You see the lifted *West wall, revealing a passage into the darkness
 31,
 -
 000100000
-41>$3>$You insert the *Sphere Artifact into the hole. Suddenly, the *West wall lifts up, revealing a path.$48>$$Crazy$
+41>$3>$You insert the *Sphere Artifact into the hole. Suddenly, the *West wall lifts up, revealing a path.$31>$$Crazy$
 *-1,0,0
 
 The Chamber
 A dark and cold chamber deviod of any life. It has an etheral odor of decay. To the West there dimly shines a purple mirror. The sword seems to want to go towards the mirror, and pulsates faster the closer you are to the mirror. 
--
+On a rock you see a half-full flask of Fuel.
 -
 -
 -
@@ -324,7 +324,7 @@ A dark and cold chamber deviod of any life. It has an etheral odor of decay. To 
 *-2,0,0
 
 The Misty Mirror
-An etheral realm? There is a bright light coming from the *North
+An etheral realm?
 -
 -
 -
@@ -336,17 +336,3 @@ An etheral realm? There is a bright light coming from the *North
 000000000
 -
 *-3,0,0
-
-? ? ?
-An etheral realm?
--
--
--
--
--
--
--
--
-000000000
--
-*-3,1,0
