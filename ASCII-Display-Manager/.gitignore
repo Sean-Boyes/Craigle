@@ -1,0 +1,65 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+*.vsidx
+.vs/ASCII/FileContentIndex/read.lock
+*.db
+*.db-shm
+*.db-wal
+*.opendb
+*.user
+*.filters
+*.vcxproj
+*.sln
+.vs/ASCII/v17/.suo
+*.log
+*.recipe
+*.lastbuildstate
+*.tlog
+*.command
+*.ifc
+*.idb
+*.pdb
+*.ipch
+ASCII/x64/Debug/ASCII.vcxproj.FileListAbsolute.txt
+ASCII/x64/Debug/Cursor.h_1E9EA8E8AC1BEFA3.ifc.dt.d.json
+ASCII/x64/Debug/Cursor.h_1E9EA8E8AC1BEFA3.ifc.dt.module.json
+ASCII/x64/Debug/Test2.h.ifc.d.json
+ASCII/x64/Debug/test2.h.module.json
+ASCII/x64/Debug/Test2.h_28367BFA17F28DB5.ifc.dt.d.json
+ASCII/x64/Debug/Test2.h_28367BFA17F28DB5.ifc.dt.module.json
+ASCII/x64/Debug/Test2.h_521DBA87D17ACFD7.ifc.dt.d.json
+ASCII/x64/Debug/Test2.h_521DBA87D17ACFD7.ifc.dt.module.json
+.vscode/settings.json
+ASCII/x64/Debug/ASCII.ilk
+ASCII/x64/Debug/Cursor.h.ifc.d.json
+ASCII/x64/Debug/cursor.h.module.json

@@ -19,30 +19,30 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="headers\Attack-Dodge.hpp" />
-    <ClInclude Include="headers\battle.hpp" />
-    <ClInclude Include="headers\Cursor.hpp" />
-    <ClInclude Include="headers\entity.hpp" />
-    <ClInclude Include="headers\item.hpp" />
-    <ClInclude Include="headers\map.hpp" />
-    <ClInclude Include="headers\screen.hpp" />
-    <ClInclude Include="headers\TextEffects.hpp" />
-    <ClInclude Include="headers\tut.hpp" />
+    <ClInclude Include="Attack-Dodge.hpp" />
+    <ClInclude Include="battle.hpp" />
+    <ClInclude Include="Cursor.hpp" />
+    <ClInclude Include="entity.hpp" />
+    <ClInclude Include="item.hpp" />
+    <ClInclude Include="map.hpp" />
+    <ClInclude Include="screen.hpp" />
+    <ClInclude Include="TextEffects.hpp" />
+    <ClInclude Include="tut.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Attack-Dodge.cpp" />
-    <ClCompile Include="src\battle.cpp" />
-    <ClCompile Include="src\Cursor.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\screen.cpp" />
-    <ClCompile Include="src\TextEffects.cpp" />
-    <ClCompile Include="src\tut.cpp" />
+    <ClCompile Include="Attack-Dodge.cpp" />
+    <ClCompile Include="battle.cpp" />
+    <ClCompile Include="Cursor.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="screen.cpp" />
+    <ClCompile Include="TextEffects.cpp" />
+    <ClCompile Include="tut.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="src\items.txt" />
-    <Text Include="src\room.txt" />
-    <Text Include="src\rooms.txt" />
-    <Text Include="src\seperator.txt" />
+    <Text Include="items.txt" />
+    <Text Include="room.txt" />
+    <Text Include="rooms.txt" />
+    <Text Include="seperator.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

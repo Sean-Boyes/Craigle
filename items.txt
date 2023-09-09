@@ -1,0 +1,127 @@
+Fuel
+Fuel for a lantern
+-
+-
+33,32$
+%31
+
+Lantern
+A rusty old lantern. Good for lighting up dark places.
+-
+-
+-
+%32
+
+Empty Lantern
+A rusty old lantern. It doesn't have any fuel.
+-
+-
+31,32$
+%33
+
+Sword
+The blade you found upon falling into this realm. It seems to occasionally glow a soft purple.
+3
+150
+43,35$
+*34
+
+
+Sword
+The blade you found upon falling into this realm. Something you've done to it seems to have made it stronger. It glows purple sometimes.
+5
+175
+-
+*35
+
+
+Sword
+The blade you found upon falling into this realm. You seem to have awakened some mysterious power inside of it, increasing its effectiveness. It shines bright purple often.
+7
+200
+-
+*36
+
+Leather Armour
+A worn set of leather straps. They might offer some extra protection. 
+4
+-
+-
+^37
+
+Chainmail
+An abandoned set of chainmail armour. Looks like it'd provide moderate protection. 
+9
+-
+-
+^38
+
+Plate Armour
+A prestigious suit of armour, looking as if it belonged to a revered knight. It's still in remarkable condition too! At least for being down here anyway. Would likely give great protection.
+15
+-
+-
+^39
+
+Emerald Key
+A shiny golden key with a brightly glowing emerald end.
+-
+-
+-
+%40
+
+Sphere Artifact
+An oddly perfect sphere. Looks like it's magical in some way.
+-
+-
+-
+%41 
+
+Cathedral Key
+A silver key in the form of a crucifix. It radiates light holy magic.
+-
+-
+-
+%42
+
+Holy Water
+A bottle of holy water, used for purify and enhancing magical aritfacts. The sword seems to take interest in it as you do.
+-
+-
+34,35$
+%43
+
+Grapple Hook
+A long rope tied to a steel hook. Good for climbing.
+-
+-
+-
+%44
+
+Rusty Key
+A rusty old key.
+-
+-
+-
+%45
+
+Discarded Note
+It reads "Return the key to its dark resting place."
+-
+-
+-
+%46
+
+Bones
+A pile of bones. They are the skeleton's money.
+-
+-
+-
+%47
+
+Rat Skeleton
+The skeleton of a rat. It looks like the bones could fit into tiny, tight spaces...
+-
+-
+-
+%48
