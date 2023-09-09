@@ -63,7 +63,7 @@ int main()
 	std::vector<std::string> itemobject;
 	std::vector<item> items;
 	std::vector<item> inventory;
-	std::ifstream itemfile("../resources/items.txt");
+	std::ifstream itemfile("items.txt");
 
 	// Load Item File(s)
 	if (itemfile.is_open())
@@ -110,7 +110,7 @@ int main()
 
 	std::vector<std::string> roomobject;
 	std::vector<room> rooms;
-	std::ifstream roomfile("../resources/rooms.txt");
+	std::ifstream roomfile("rooms.txt");
 
 
 	// Load Room File(s)

@@ -30,12 +30,6 @@
     <ClInclude Include="headers\tut.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="resources\items.txt" />
-    <Text Include="resources\room.txt" />
-    <Text Include="resources\rooms.txt" />
-    <Text Include="resources\seperator.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="src\Attack-Dodge.cpp" />
     <ClCompile Include="src\battle.cpp" />
     <ClCompile Include="src\Cursor.cpp" />
@@ -43,6 +37,12 @@
     <ClCompile Include="src\screen.cpp" />
     <ClCompile Include="src\TextEffects.cpp" />
     <ClCompile Include="src\tut.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\items.txt" />
+    <Text Include="src\room.txt" />
+    <Text Include="src\rooms.txt" />
+    <Text Include="src\seperator.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
