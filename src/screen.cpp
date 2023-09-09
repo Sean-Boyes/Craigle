@@ -15,10 +15,10 @@
 #include <algorithm>
 
 
-#include "TextEffects.hpp"
-#include "Cursor.hpp"
-#include "map.hpp"
-#include "entity.hpp"
+#include "../headers/TextEffects.hpp"
+#include "../headers/Cursor.hpp"
+#include "../headers/map.hpp"
+#include "../headers/entity.hpp"
 
 inline ASCIIobject bounds;
 inline ASCIIobject panel1;

@@ -18,6 +18,32 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="headers\Attack-Dodge.hpp" />
+    <ClInclude Include="headers\battle.hpp" />
+    <ClInclude Include="headers\Cursor.hpp" />
+    <ClInclude Include="headers\entity.hpp" />
+    <ClInclude Include="headers\item.hpp" />
+    <ClInclude Include="headers\map.hpp" />
+    <ClInclude Include="headers\screen.hpp" />
+    <ClInclude Include="headers\TextEffects.hpp" />
+    <ClInclude Include="headers\tut.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="resources\items.txt" />
+    <Text Include="resources\room.txt" />
+    <Text Include="resources\rooms.txt" />
+    <Text Include="resources\seperator.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Attack-Dodge.cpp" />
+    <ClCompile Include="src\battle.cpp" />
+    <ClCompile Include="src\Cursor.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\screen.cpp" />
+    <ClCompile Include="src\TextEffects.cpp" />
+    <ClCompile Include="src\tut.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -130,32 +156,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Attack-Dodge.cpp" />
-    <ClCompile Include="Attack-Dodge.hpp" />
-    <ClCompile Include="battle.cpp" />
-    <ClCompile Include="battle.hpp" />
-    <ClCompile Include="Cursor.cpp" />
-    <ClCompile Include="entity.hpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="map.hpp" />
-    <ClCompile Include="screen.cpp" />
-    <ClCompile Include="TextEffects.cpp" />
-    <ClCompile Include="tut.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="items.txt" />
-    <Text Include="room.txt" />
-    <Text Include="rooms.txt" />
-    <Text Include="seperator.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Cursor.hpp" />
-    <ClInclude Include="item.hpp" />
-    <ClInclude Include="screen.hpp" />
-    <ClInclude Include="TextEffects.hpp" />
-    <ClInclude Include="tut.hpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -14,12 +14,12 @@
 #include <cmath>
 #include <algorithm>
 
-#include "tut.hpp"
-#include "battle.hpp"
-#include "entity.hpp"
-#include "map.hpp"
-#include "item.hpp"
-#include "screen.hpp"
+#include "../headers/tut.hpp"
+#include "../headers/battle.hpp"
+#include "../headers/entity.hpp"
+#include "../headers/map.hpp"
+#include "../headers/item.hpp"
+#include "../headers/screen.hpp"
 
 int main()
 {
@@ -63,7 +63,7 @@ int main()
 	std::vector<std::string> itemobject;
 	std::vector<item> items;
 	std::vector<item> inventory;
-	std::ifstream itemfile("items.txt");
+	std::ifstream itemfile("../resources/items.txt");
 
 	// Load Item File(s)
 	if (itemfile.is_open())
@@ -110,7 +110,7 @@ int main()
 
 	std::vector<std::string> roomobject;
 	std::vector<room> rooms;
-	std::ifstream roomfile("rooms.txt");
+	std::ifstream roomfile("../resources/rooms.txt");
 
 
 	// Load Room File(s)

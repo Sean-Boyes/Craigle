@@ -14,9 +14,9 @@
 #include <cmath>
 #include <algorithm>
 
-#include "entity.hpp"
-#include "Attack-Dodge.hpp"
-#include "screen.hpp"
+#include "../headers/entity.hpp"
+#include "../headers/Attack-Dodge.hpp"
+#include "../headers/screen.hpp"
 
 inline int BattleStart(player& hero, monster enemy)
 {

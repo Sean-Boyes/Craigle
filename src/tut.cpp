@@ -1,7 +1,7 @@
 #pragma once
 
-#include "battle.hpp"
-#include "screen.hpp"
+#include "../headers/battle.hpp"
+#include "../headers/screen.hpp"
 
 
 inline void tutorial()

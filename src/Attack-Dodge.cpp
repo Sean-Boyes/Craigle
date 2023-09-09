@@ -14,9 +14,9 @@
 #include <cmath>
 #include <algorithm>
 
-#include "entity.hpp"
-#include "screen.hpp"
-#include "entity.hpp"
+#include "../headers/entity.hpp"
+#include "../headers/screen.hpp"
+#include "../headers/entity.hpp"
 
 inline int roll(int x, int y)
 {
